@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-three-quarters">
+<h1 class="nhsuk-heading-l">Future study leave service</h1>
+<p class="nhsuk-lede-text app-lede-text">Find out what improvements we’re planning—and how you can get involved.</p>
+
+
+<h2 class="nhsuk-heading-m">Where we are</h2>
+<p class="nhsuk-body">
+          Following discovery research, we’re now working to identify the best ways to address the challenges to users that were highlighted by the research.
+        </p>
+  <p class="nhsuk-body">
+          We’re currently in the alpha phase—a stage of product design where we try out different solutions to the problems we learnt about during discovery research.
+        </p>
+
+<h2 class="nhsuk-heading-m">What we’re planning</h2>
+        <p>During the alpha phase we’ll be:</p>
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>working on ways to address the needs of users we’ve identified</li>
+          <li>creating prototypes to test ideas and explore new approaches</li>
+          <li>ensuring national alignment</li>
+          <li>streamline booking of study leave</li>
+          <li>streamline repayment of expenses</li>
+        </ul>
+
+        <h2 class="nhsuk-heading-m">Work with us</h2>
+        <p>As users of the study leave service, here’s how you can help us to improve the process:</p>
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>take part in interviews</li>
+          <li>join co-design workshops</li>
+          <li>help us test new designs</li>
+        </ul>
+        <p>
+          To take part in helping us with any of the activities listed, please complete our 
+          <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=AMXRrdemvU24kH-MtvfYYdyhDPky9sJKhaTjqC7bJbVUNFU5RFZaVDhYSlFWMFhYNkNSWDdVNVVPSi4u" class="nhsuk-link">expression of interest form</a>.
+        </p>
+
+        <h2 class="nhsuk-heading-m">Contact us</h2>
+        <p>
+          You can email the study leave team at: <a href="mailto:studyleave-user-research@mastek.com" class="nhsuk-link">
+          studyleave-user-research@mastek.com</a>
+        </p>
+
+        <h2 class="nhsuk-heading-m">Support information</h2>
+        <p>
+          For more information on how we use and store your data, visit 
+          <a href="https://www.england.nhs.uk/contact-us/privacy-notice/" class="nhsuk-link">
+          NHS England’s privacy notice</a>.
+        </p>
+
+
+
+
+
+
+
+<hr>
+      <div class="nhsuk-grid-row">
+  <div class="">
+   
+  <h3 id="research-info" class="nhsuk-heading-m" style="margin-bottom: 10px;">Information for research participants</h3>
+  <span class="nhsuk-hint">Find out how we'll collect and manage your data and information about your rights. </span>
+
+{% from 'details/macro.njk' import details %}
+
+{% call details({
+  summaryText: "View information",
+  classes: "nhsuk-expander"
+}) %}
+ 
+<p>You are being asked to take part in a research study conducted by Mastek on behalf of NHS England.  </p>
+
+ 
+<p>Before you decide to participate, it’s important you understand what research is being carried out and what it will involve. This webpage will provide the information you need about our research. </p>
+ 
+<h3 class="nhsuk-heading-s">What is Mastek? </h3>
+
+ 
+<p>Mastek is a company that provides research and design services to the NHS, government and businesses.  </p>
+ 
+<h3 class="nhsuk-heading-s">What is this research about?  </h3>
+
+ 
+<p>The purpose of this research is for us to better understand the needs and experiences of those who apply for—and manage—study leave. Your participation in this research will help us identify recommendations to help improve the recruitment platform. </p>
+  <p>This study will consist of co-design workshops and 1-to-1 interviews with members of our research team.  </p>
+ 
+<h3 class="nhsuk-heading-s">What data will be collected?  </h3>
+
+<p>We’ll ask you questions about study leave and your experiences applying for and managing study leave. This will help us understand what works well and what could be made better.  </p>
+
+<p>We’ll take notes during co-design workshops, and both record and take notes during interview sessions to capture your feedback. We’ll not request, and you should not share, any sensitive personal information during this study.  </p>
+ 
+<h3 class="nhsuk-heading-s">How will my information be used? </h3>
+
+ 
+<p>Any data, recording or other personal information collected about you will be treated confidentially. We may use recordings and notes for internal purposes as we make recommendations for the recruitment service.  </p>
+
+<p>We may also anonymise your responses and aggregate them with the responses of other participants in order to share study results within the NHS.  </p>
+ 
+<h3 class="nhsuk-heading-s">How is my personal information stored?  </h3>
+
+ 
+<p>We’ll store and process your personal information and session data in a secure protected location until we deem the content no longer necessary for the research purposes outlined above, at which point it’ll be securely deleted. This data can include your name and email address.  </p>
+ 
+<h3 class="nhsuk-heading-s">Your rights </h3>
+
+ 
+<p>The researchers are not connected to any team in the NHS that decides the outcomes of applications. We do not have access to information about applications. We’ll not share the information we collect during our research with staff who make decisions on applications. </p>
+ 
+<p>Your participation in this research is voluntary. You can take a break or discontinue participation at any time without giving a reason.  </p>
+ 
+<p>If you have any questions or concerns about this research or if you wish to withdraw your consent in the future, please email: <a href="mailto:studyleave-user-research@mastek.com" class="nhsuk-link">studyleave-user-research@mastek.com</a>  </p>
+ 
+ 
+
+ 
+
+
+
+
+{% endcall %}
+
+  </div>
+</div>
+<p class="nhsuk-body-s nhsuk-u-secondary-text-colour nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-0">Updated: 13 October 2025</p>
+
+
+
+
+
+ </div>
+</div>
+ {% endblock %}
