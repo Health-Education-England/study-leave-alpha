@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select, 
+  .nhsuk-input {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  /* Hide button by default */
+  #add-expense-btn {
+    display: none;
+    margin-top: 20px;
+  }
+    th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+     .expense-note {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  color: #4c6272; /* NHS greys */
+}
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Expense claim</span>
+  
+
+   
+
+ 
+
+<div class="nhsuk-form-group">
+  <h1 class="nhsuk-label-wrapper">
+    <label class="nhsuk-label nhsuk-label--l" for="message-to-applicant">
+      Message to applicant
+    </label>
+  </h1>
+  <div id="message-hint" class="nhsuk-hint">
+  Hint text comes here
+  </div>
+  <textarea class="nhsuk-textarea" id="message-to-applicant" name="message-to-applicant" rows="10" aria-describedby="message-hint">Dear James Smith,
+This application is being returned to you because of the following reasons:
+
+- Cost is higher than original estimate
+- Deadline for expenses claim has passed
+
+Thanks,
+Harry Smith
+  </textarea>
+</div>
+
+
+<div class="nhsuk-button-group">
+{{ button({
+  text: "Send to applicant",
+  classes: "nhsuk-button",
+  href: "reject-success"  
+}) }}
+
+  {{ button({
+    text: "Save as draft",
+    classes: "nhsuk-button--secondary",
+    href: "#" 
+  }) }}
+</div>
+ <p><a href="">Cancel</a></p>
+ </div>
+</div>
+
+{# ---- end script ---- #}
+
+{% endblock %}

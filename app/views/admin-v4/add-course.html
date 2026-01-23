@@ -1,0 +1,178 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select, 
+  .nhsuk-input {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  /* Hide button by default */
+  #add-expense-btn {
+    display: none;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Add course</span>
+    <h1 class="nhsuk-heading-l">Course details</h1>
+
+    {% from 'input/macro.njk' import input %}
+    {% from 'textarea/macro.njk' import textarea %}
+    {% from 'checkboxes/macro.njk' import checkboxes %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+
+
+    {{ input({
+  label: {
+    text: "Course name",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, Advanced Life Support training or cardiology conference'"
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+
+
+
+
+    {{ input({
+  label: {
+    text: "Location",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, Online or a location like London, Leeds or Glasgow"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+<div class="nhsuk-form-group">
+  <label class="nhsuk-label  nhsuk-label--s" for="select-1">
+    Select who this course is for
+  </label>
+  <div class="nhsuk-hint" id="example-hint">
+        This will set the availability to a specific user group, or select all to make the course available for everyone
+      </div>
+  <select class="nhsuk-select" id="select-1" name="select-1">
+    <option value="1">All</option>
+    <option value="2" >Group 1</option>
+    <option value="3" >Group 2</option>
+     <option value="3" >Group 3</option>
+      <option value="3" >Group 4</option>
+  </select>
+</div>
+
+
+
+
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-1">
+        Upload a file (optional)
+      </label>
+      <div class="nhsuk-hint" id="example-hint">
+        Upload each file in PDF, JPG, or PNG format, with a maximum size of 5 MB per file
+      </div>
+      <input class="nhs-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+    </div>
+
+<div class="inputmaxwidth">
+  {{ textarea({
+    name: "supportingInfo",
+    id: "supportingInfo",
+    label: {
+      text: "Course details",
+      classes: "nhsuk-label--s"
+    },
+    hint: {
+      html: 'Provide information to inform trainees about the course'
+      
+    }
+  }) }}
+</div>
+
+   
+
+
+{% from 'button/macro.njk' import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Add course",
+    classes: "nhsuk-button",
+     href: "courses"
+  }) }}
+
+  {{ button({
+    text: "Save as draft",
+    classes: "nhsuk-button--secondary",
+    href: "courses"
+  }) }}
+
+  
+
+</div>
+
+<!--
+<label class="nhsuk-label" for="course-details">
+  Add more details about the course
+</label>
+<span class="nhsuk-hint">For example, some example texts here</span>
+
+<textarea id="course-details"></textarea>
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<div id="editor-container"></div>
+
+<script>
+  const quill = new Quill('#editor-container', {
+    theme: 'snow',
+    placeholder: 'Add more details about the course...',
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'italic', 'underline'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['clean']
+      ]
+    }
+  });
+</script>
+
+-->
+{% endblock %}

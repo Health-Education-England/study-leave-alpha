@@ -1,0 +1,222 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+Location and date - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+  select {
+    border-radius: 0 !important;
+  }
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .nhsuk-select {
+    min-width: 450px !important;
+    max-width: 450px !important;
+}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+  href: "javascript:window.history.back()",
+  text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Location and date</h1>
+
+    <div class="nhsuk-progress inputmaxwidth" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4"
+      aria-label="Page 2 of 4">
+      <div class="nhsuk-progress__bar" style="width: calc(2 / 4 * 100%);"></div>
+    </div>
+
+<span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+  Page 2 of 4
+</span>
+
+    <style>
+      .nhsuk-progress {
+        height: 12px;
+        background: #c3cace;
+        /* NHS Grey 4 */
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .nhsuk-progress__bar {
+        height: 100%;
+        background: #007f3b;
+        /* NHS Green */
+        transition: width 0.3s ease;
+        border-right: 2px solid #ffffff;
+      }
+    </style>
+
+
+    <div class="inputmaxwidth">
+      {{ input({
+      label: {
+      text: "Course or event location",
+      classes: "nhsuk-label--s"
+      },
+      hint: {
+      text: "Provide the town or city where you’ll be attending the course or event "
+      },
+      id: "event-location",
+      name: "eventLocation"
+      }) }}
+    </div>
+
+
+
+
+    {% from 'date-input/macro.njk' import dateInput %}
+
+    {{ dateInput({
+    id: "start-date",
+    namePrefix: "start-date",
+    fieldset: {
+    legend: {
+    text: "Start date",
+    classes: "nhsuk-label--s"
+    }
+    },
+    hint: {
+    text: "For example, 15 11 2025"
+    },
+    items: [
+    {
+    name: "day",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "month",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "year",
+    classes: "nhsuk-input--width-4"
+    }
+    ]
+    }) }}
+
+
+
+
+
+
+
+    {{ dateInput({
+    id: "end-date",
+    namePrefix: "end date",
+    fieldset: {
+    legend: {
+    text: "End date",
+    classes: "nhsuk-label--s"
+    }
+    },
+    hint: {
+    text: "For example, 17 11 2025"
+    },
+    items: [
+    {
+    name: "day",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "month",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "year",
+    classes: "nhsuk-input--width-4"
+    }
+    ]
+    }) }}
+
+    {% from 'input/macro.njk' import input %}
+
+
+   <div class="inputmaxwidth">
+
+<div class="nhsuk-form-group">
+  <label class="nhsuk-label nhsuk-label--s" for="expense-type-2">
+    Time away from home
+  </label>
+  <p class="nhsuk-hint">Select the period of time you'll be away from home. This will affect your daily subsistence allowance</p>
+  <select class="nhsuk-select" id="sort-by" name="sortBy">
+    <option value="recently-published" selected>Select</option>
+    <option value="recently-updated">5 hours away from midday to 2pm</option>
+    <option value="most-views">10 hours away after 7pm</option>
+    <option value="most-views">24 hour period</option>
+    
+  </select>
+</div>
+</div>
+
+
+    <div class="inputmaxwidth">
+      {{ input({
+      label: {
+      text: "Number of days requested",
+      classes: "nhsuk-label--s"
+      },
+      hint: {
+      text: "This is the number of days you’ll be using from your study leave allocation. Only include the number of
+      days you’ll actually be studying"
+      },
+      id: "event-days",
+      name: "eventDays"
+      }) }}
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+  text: "Save and continue",
+  classes: "nhsuk-button--green",
+  href: "apply-expense"
+  }) }}
+
+  {{ button({
+  text: "Cancel",
+  classes: "nhsuk-button--secondary",
+  href: "dashboard"
+  }) }}
+</div>
+
+
+
+
+{% endblock %}

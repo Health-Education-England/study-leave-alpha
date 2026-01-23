@@ -1,0 +1,267 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+ 
+  #travel-type-wrapper, #mileage-wrapper, #nights-wrapper { margin-top: 8px; }
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Add an expense</h1>
+    <p class="nhsuk-hint">Make sure you add all the expenses you expect to incur. You’ll be able to provide the exact amounts for any estimated expenses once you know them  </p>
+
+
+<div class="nhsuk-form-group">
+  <label class="nhsuk-label nhsuk-label--s" for="expense-type-2">
+    Type of expense
+  </label>
+  <p class="nhsuk-hint">Select whether this is an estimated expense or one that you've already incurred</p>
+  <select class="nhsuk-select" id="sort-by" name="sortBy">
+    <option value="recently-published" selected>Select</option>
+    <option value="recently-updated">Estimated expense</option>
+    <option value="most-views">Incurred expense</option>
+    
+  </select>
+</div>
+
+
+
+
+    {{ select({
+      id: "expense-type",
+      name: "expense-type",
+      label: {
+        text: "Expense",
+        classes: "nhsuk-label--s"
+      },
+      items: [
+        { value: "Select", text: "Select" },
+         { value: "course-fee", text: "Course fee" },
+        { value: "travel", text: "Travel" },
+        { value: "accommodation", text: "Accommodation" }
+      ]
+    }) }}
+
+    <div id="travel-type-wrapper" style="display:none;">
+      {{ select({
+        id: "travel-type",
+        name: "travel-type",
+        label: {
+          text: "Travel type",
+          classes: "nhsuk-label--s"
+        },
+        items: [
+          { value: "", text: "Select travel type" },
+          { value: "train", text: "Train" },
+          { value: "air", text: "Air" },
+          { value: "bus", text: "Bus" },
+          { value: "mileage", text: "Mileage" }
+        ]
+      }) }}
+    </div>
+
+    <div id="mileage-wrapper" style="display:none;">
+      <div class="nhsuk-form-group">
+        <label class="nhsuk-label nhsuk-label--s" for="miles">Miles</label>
+        <span id="miles-hint" class="nhsuk-hint">Enter the number of miles travelled so the cost can be calculated</span>
+        <input class="nhsuk-input inputmaxwidth" id="miles" name="miles" type="number" min="0" step="0.1" inputmode="decimal" />
+      </div>
+    </div>
+
+  
+    <div id="nights-wrapper" style="display:none;">
+      <div class="nhsuk-form-group">
+        <label class="nhsuk-label nhsuk-label--s" for="nights">Number of nights</label>
+        <span id="nights-hint" class="nhsuk-hint">Enter the number of nights you require accommodation </span>
+        <input class="nhsuk-input inputmaxwidth" id="nights" name="nights" type="number" min="1" step="1" inputmode="numeric" />
+      </div>
+    </div>
+
+    <div class="inputmaxwidth">
+    {{ input({
+      label: {
+        text: "Cost",
+        classes: "nhsuk-label--s",
+        format: "numeric"
+      },
+      hint: {
+        text: " "
+      },
+      id: "cost",
+      name: "cost",
+       prefix: "£",
+      classes: "",
+      attributes: {
+        autocomplete: "off"
+      }
+    }) }}
+    </div>
+
+
+    {# Any other form fields can go here #}
+
+  </div>
+
+  
+</div>
+
+
+<div class="nhsuk-grid-row" style="margin-bottom: 30px;">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div>
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-course">
+        Upload a receipt (optional)
+      </label>
+      <div class="nhsuk-hint" id="course-upload-hint">
+        Upload proof of the amount spent or proof of the costs you expected to incur. Upload
+        each file in PDF, JPG, or PNG format. Maximum file size 5MB
+      </div>
+      <input class="nhs-file-upload" id="file-upload-course" name="fileUploadCourse" type="file">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "add-more-expense"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+{# --- Behaviour script: show/hide and mileage calculation --- #}
+<script>
+(function () {
+  // Config: per-mile rate in GBP (edit this value to change reimbursement rate)
+  const MILE_RATE = 0.45;
+
+  const expenseSelect = document.getElementById('expense-type');
+  const travelWrapper = document.getElementById('travel-type-wrapper');
+  const travelSelect = document.getElementById('travel-type');
+  const mileageWrapper = document.getElementById('mileage-wrapper');
+  const milesInput = document.getElementById('miles');
+  const nightsWrapper = document.getElementById('nights-wrapper');
+  const nightsInput = document.getElementById('nights');
+  const costInput = document.getElementById('cost');
+
+  function show(el){ if(el) el.style.display = ''; }
+  function hide(el){ if(el) el.style.display = 'none'; }
+
+  // When expense type changes: show travel select only when 'travel'; show nights for 'accommodation'
+  function onExpenseChange() {
+    if (!expenseSelect) return;
+    const val = expenseSelect.value;
+
+    if (val === 'travel') {
+      show(travelWrapper);
+      if (travelSelect) travelSelect.removeAttribute('disabled');
+      onTravelChange();
+    } else {
+      hide(travelWrapper);
+      hide(mileageWrapper);
+      if (travelSelect) travelSelect.value = '';
+      if (milesInput) milesInput.value = '';
+      if (costInput) costInput.removeAttribute('readonly');
+    }
+
+    // accommodation: show nights input
+    if (val === 'accommodation') {
+      show(nightsWrapper);
+      if (nightsInput) nightsInput.removeAttribute('disabled');
+    } else {
+      hide(nightsWrapper);
+      if (nightsInput) nightsInput.value = '';
+      if (nightsInput) nightsInput.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  // When travel type changes: if mileage selected, reveal miles input and make cost readonly & auto-calc
+  function onTravelChange() {
+    if (!travelSelect) return;
+    const val = travelSelect.value;
+    if (val === 'mileage') {
+      show(mileageWrapper);
+      if (costInput) costInput.setAttribute('readonly', 'readonly');
+      calculateCostFromMiles();
+    } else {
+      hide(mileageWrapper);
+      if (milesInput) milesInput.value = '';
+      if (costInput) costInput.removeAttribute('readonly');
+    }
+  }
+
+  // calculate cost from miles and write to cost input (2 decimal places)
+  function calculateCostFromMiles() {
+    if (!milesInput || !costInput) return;
+    const miles = parseFloat(milesInput.value || 0);
+    if (isFinite(miles) && miles > 0) {
+      const cost = (miles * MILE_RATE);
+      costInput.value = cost.toFixed(2);
+    } else {
+      costInput.value = '';
+    }
+  }
+
+  // initialise state and attach listeners
+  function init() {
+    if (!expenseSelect || !travelSelect || !costInput) return;
+
+    // default: disable nights input until needed
+    if (nightsInput) nightsInput.setAttribute('disabled', 'disabled');
+
+    expenseSelect.addEventListener('change', onExpenseChange);
+    travelSelect.addEventListener('change', onTravelChange);
+    if (milesInput) milesInput.addEventListener('input', calculateCostFromMiles);
+
+    // Reflect any server-side preselection:
+    onExpenseChange();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+{% endblock %}

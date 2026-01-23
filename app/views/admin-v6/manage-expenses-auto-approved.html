@@ -1,0 +1,241 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+ Expense claim auto approved - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Expense claim</span>
+   <h1 class="nhsuk-heading-l">Auto approved</h1>
+
+   <p>Initially estimated and approved amount: <b>£460</b></p>
+   <p>Difference in amount: <b>£0</b></p>
+    
+   
+   
+   <h2 class="nhsuk-heading-s">Expense 1</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Expense type"
+      },
+      value: {
+        text: "Travel"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Travel type"
+      },
+      value: {
+        text: "Train"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£80"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Receipt uploaded"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf</a> (open in a new tab)'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+   
+   <h2 class="nhsuk-heading-s">Expense 2</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Expense type"
+      },
+      value: {
+        text: "Travel"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Travel type"
+      },
+      value: {
+        text: "Train"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£80"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Receipt uploaded"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf</a> (open in a new tab)'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+   <h2 class="nhsuk-heading-s">Additional information added by applicant</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Comments"
+      },
+      value: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Applications - NHS 
+{% endblock %}
+
+{% block content %}
+
+<div class="nhs-progress">
+  <ol class="nhs-progress__list">
+    <li class="nhs-progress__item nhs-progress__item--complete">
+      <span class="nhs-progress__icon"></span>
+      <span class="nhs-progress__text">LPA paid for</span>
+    </li>
+
+    
+
+    <li class="nhs-progress__item nhs-progress__item--complete">
+      <span class="nhs-progress__icon"></span>
+      <span class="nhs-progress__text">LPA signed by you</span>
+    </li>
+
+    <li class="nhs-progress__item nhs-progress__item--current">
+      <span class="nhs-progress__icon"></span>
+      <span class="nhs-progress__text">LPA certificate provided</span>
+    </li>
+
+  
+  </ol>
+</div>
+
+
+<style>
+  .nhs-progress {
+  font-family: "Frutiger W01", Arial, sans-serif;
+}
+
+.nhs-progress__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.nhs-progress__list::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #005eb8;
+}
+
+.nhs-progress__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 0 24px 0;
+}
+
+.nhs-progress__item:last-child {
+  padding-bottom: 0;
+}
+
+
+.nhs-progress__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #005eb8;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+
+.nhs-progress__item--complete .nhs-progress__icon {
+  background: #005eb8; 
+  border-color: #005eb8;
+}
+
+.nhs-progress__item--complete .nhs-progress__icon::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid #ffffff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+
+.nhs-progress__item--current .nhs-progress__icon {
+  background: #ffffff;
+  border-color: #005eb8;
+}
+
+
+.nhs-progress__text {
+  font-size: 19px;
+  line-height: 1.4;
+  color: #212b32;
+  padding-top: 2px;
+}
+
+</style>
+
+
+ {% endblock %}

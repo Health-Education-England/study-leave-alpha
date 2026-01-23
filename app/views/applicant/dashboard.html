@@ -1,0 +1,213 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future tudy leave serviSce - NHS England
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Your Study leave dashboard</h1>
+       <p>Budget period: <b>01 April 2025 </b>to <b>31 March 2026</b></p>
+<div style="display: none;" id="contact-hint" class="nhsuk-hint">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu, nisi consectetur risus sit sit sit pretium.
+    </div>
+  </div>
+  <div class="nhsuk-grid-column-one-third">
+    {% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Apply for Study leave",
+  href: "apply",
+  classes: "nhsuk-u-float-right"
+
+}) }}
+  </div>
+</div>
+
+
+
+
+
+    {% from 'card/macro.njk' import card %}
+
+<ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">7<span class=\"nhsuk-u-visually-hidden\">Applications submitted</span></p><span class=\"nhsuk-u-font-size-16\">Applications submitted</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">4<span class=\"nhsuk-u-visually-hidden\">Applications approved</span></p><span class=\"nhsuk-u-font-size-16\">Applications approved</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">£899<span class=\"nhsuk-u-visually-hidden\">Expense requested</span></p><span class=\"nhsuk-u-font-size-16\">Expense <br>requested</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">£199 <span class=\"nhsuk-u-visually-hidden\">Expense approved</span></p><span class=\"nhsuk-u-font-size-16\">Expense <br>approved</span>"
+    }) }}
+  </li>
+  
+</ul>
+
+<!-- 
+
+{% from 'action-link/macro.njk' import actionLink %}
+
+{{ actionLink({
+  text: "You have 15 pre approved courses available",
+  href: "#"
+}) }}
+ -->
+
+{% from 'card/macro.njk' import card %}
+
+<ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+  {{ card({
+    href: "pre-approved",
+    primary: "true",
+    clickable: "true",
+    heading: "You have 15 pre approved courses available",
+    headingClasses: "nhsuk-heading-s",
+    description: "These are free courses which are sed do eiusmod tempor incididunt"
+  }) }}
+  </li>
+</ul>
+
+
+
+
+<hr class="nhsuk-u-margin-top-0">
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+<h2 class="nhsuk-heading-m">My Study leave applications</h2>
+
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search applications
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-hint"
+          />
+       
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="status-select">Status</label>
+          <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+            <option value="all" selected>All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+
+  <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+<!--Space for show items if required from the team -->
+  </div>
+</div>
+
+
+
+
+{{ table({
+  responsive: true,
+  panel: true,
+  firstCellIsHeader: true,
+  head: [
+    { text: "Study leave title" },
+    { text: "Duration", format: "text" },
+    { text: "Type", format: "text" },
+    { text: "Expense", format: "numeric" },
+    { text: "Status", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: '<a href="summary">Advanced life support</a>' },
+   { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+      { text: "Pre-approved", format: "text" },
+      { text: "£0", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--grey">In draft</strong>' }
+    ],
+    [
+     { html: '<a href="rejected">Annual medical education conference 2025</a>' },
+     { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+      { text: "Pre-approved", format: "text" },
+      { text: "£600", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' }
+    ],
+    [
+    { html: '<a href="view-details">Core surgical skills workshop</a>' },
+     { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+      { text: "International", format: "text" },
+      { text: "£320", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--yellow">Pending</strong>' }
+    ],
+    [
+   { html: '<a href="approved">MRCP part 1 revision course</a>'},
+  { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+      { text: "Discretionary", format: "text" },
+      { text: "£450", format: "numeric" },
+       { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' }
+    ]
+  ]
+}) }}
+
+</div>
+
+
+
+
+ {% endblock %}

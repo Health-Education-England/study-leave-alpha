@@ -1,0 +1,301 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .nhsuk-summary-list{margin-bottom: 10px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Claim expenses</span>
+   <h1 class="nhsuk-heading-l">Study leave application expenses</h1>
+   
+     <p class="nhsuk-hint">You’ve already claimed the approved expenses for this application. You can still add any expenses incurred during the course. However, if you cannot provide valid reasons for these additional expenses, they may be rejected</p>
+   
+
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+     View previously claimed expenses (£1405)
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+   
+
+   <h2 class="nhsuk-heading-s">Course</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Expense type"
+      },
+      value: {
+        text: "Course fee"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£999"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Uploaded receipts"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in a new tab)</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+   
+   <h2 class="nhsuk-heading-s">Travel</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Travel type"
+      },
+      value: {
+        text: "Train"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£93"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Uploaded receipts"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in a new tab)</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+   <h2 class="nhsuk-heading-s">Accommodation</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Number of nights"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£313"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Uploaded receipts"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in a new tab)</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+  </div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p> <a class="" href="claim-added-your-additional-expenses">Add new expense</a></p>
+   
+ 
+
+<div class="">
+    {{ textarea({
+      name: "supportingInfo",
+      id: "supportingInfo",
+      label: {
+        text: "Supporting information (optional)",
+        classes: "nhsuk-label--s"
+      },
+      hint: {
+        text: "Provide any information that could help support your expenses claim"
+      }
+    }) }}
+
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: ""  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard-claimed" 
+  }) }}
+</div>
+
+
+
+
+ {% endblock %}

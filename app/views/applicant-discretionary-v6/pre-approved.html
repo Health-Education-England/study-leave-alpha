@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Your pre-approved courses - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Your pre-approved courses</h1>
+       
+<div style="" id="contact-hint" class="nhsuk-hint">
+     Select course from the list and apply. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search courses
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-hint"
+          />
+       
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+
+
+
+ 
+
+
+
+  <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+<!--Space for show items if required from the team -->
+  </div>
+</div>
+
+
+
+
+{{ table({
+  responsive: true,
+  panel: true,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Course name" },
+    { text: "Duration", format: "text" },
+    { text: "Location", format: "text" },
+    
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: '<a href="details-pre-approved">Course title 1</a>' },
+   { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+      
+      { html: '<a href="details-pre-approved">Apply</a>' }
+    ],
+    [
+     { html: '<a href="details-pre-approved">Course title 2</a>' },
+     { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+    
+      { html: '<a href="#">Apply</a>' }
+    ],
+    [
+    { html: '<a href="details-pre-approved">Course title 3</a>' },
+     { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+   
+      { html: '<a href="#">Apply</a>' }
+    ],
+    [
+   { html: '<a href="#">Course title 4</a>'},
+  { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+ 
+       { html: '<a href="#">Apply</a>' }
+    ]
+  ]
+}) }}
+
+</div>
+
+
+
+
+ {% endblock %}

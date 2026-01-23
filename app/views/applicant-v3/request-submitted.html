@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+<div class="nhsuk-notification-banner nhsuk-notification-banner--warning" role="alert" aria-labelledby="nhsuk-notification-banner-title" data-module="nhsuk-notification-banner">
+  <div class="nhsuk-notification-banner__header">
+    <h2 class="nhsuk-notification-banner__title" id="nhsuk-notification-banner-title">
+      Request submitted
+    </h2>
+  </div>
+  <div class="nhsuk-notification-banner__content">
+    <h3 class="nhsuk-notification-banner__heading">
+    Your study leave request has been submitted and is awaiting admin review</h3>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+    <a href="withdraw">Withdraw request</a>
+  </div>
+</div>
+
+
+
+
+    
+
+
+
+{% from 'button/macro.njk' import button %}
+ <p><a href="">Download this study leave details (PDF)</a></p>
+<div class="nhsuk-button-group">
+ 
+
+  {{ button({
+    text: "Go to dashboard",
+    classes: "nhsuk-button",
+    href: "dashboard"  
+  }) }}
+</div>
+
+
+
+
+
+
+
+ {% endblock %}

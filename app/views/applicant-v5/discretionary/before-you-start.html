@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+Before you start your application - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+  select {
+    border-radius: 0 !important;
+  }
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+
+  .apply-sl .nhsuk-select {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+  href: "javascript:window.history.back()",
+  text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+
+    {% from "breadcrumb/macro.njk" import breadcrumb %}
+    {% from "button/macro.njk" import button %}
+    {% from 'inset-text/macro.njk' import insetText %}
+
+    {% set mainClasses = "nhsuk-main-wrapper--s" %}
+    {% set dummyNhsNumber = "999 123 4567" %}
+
+
+
+
+
+
+    <h1 class="nhsuk-heading-xl">Apply for study leave</h1>
+    <p class="nhsuk-hint" style="margin-top: 0px;">You can use this service to apply for and manage study leave and to claim expenses</p>
+    
+
+
+
+    <h2 class="nhsuk-heading-m">Before you start</h2>
+    <p>To successfully make a study leave application, you’ll need:</p>
+    <ul>
+      <li>details about the course or event you want to attend</li>
+      <li>agreement from your educational supervisor that the course is appropriate</li>
+      <li>permission from your rota coordinator to be away from work</li>
+      <li>the name and contact details of the person who’ll approve your application—this is usually your Training Programme Director (TPD)</li>
+      <li>estimated costs that will be incurred, for example course fees, travel and accommodation</li>
+    </ul>
+
+
+    <h2 class="nhsuk-heading-m">Once your application is approved</h2>
+    <p>After your study leave application has been approved, you can:</p>
+    <ul>
+      <li>come back and claim reimbursement of your expenses and provide receipts</li>
+    </ul>
+
+
+    <h2 class="nhsuk-heading-m">Once you’ve attended the course</h2>
+    <p>After you’ve attended the course, you can:</p>
+    <ul>
+      <li>add any other expenses you incurred, for example meals or parking fees</li>
+    </ul>
+
+
+
+
+      <h2 class="nhsuk-heading-m">Permission to attend</h2>
+       <p>You must have permission to attend the course from your educational supervisor and rota coordinator.</p>
+      
+    {% from "checkboxes/macro.njk" import checkboxes %}
+
+{{ checkboxes({
+  idPrefix: "contact",
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "I confirm that I have:"
+      
+    }
+  },
+  
+  items: [
+    
+    {
+      value: "Some text about agree 1",
+      text: "my educational supervisor’s confirmation that the course is appropriate"
+    },
+    {
+      value: "Some text about agree 2",
+      text: "approval from my rota coordinator to take time away from clinical duties"
+    }
+  ]
+}) }}
+
+
+
+
+<div class="nhsuk-button-group">
+    {{ button({
+    text: "Start now",
+    href: "apply"
+    }) }}
+    {% from "button/macro.njk" import button %}
+
+</div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

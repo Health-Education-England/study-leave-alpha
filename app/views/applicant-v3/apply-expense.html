@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   
+
+
+
+
+
+
+
+
+
+
+
+{% from 'radios/macro.njk' import radios %}
+
+{{ radios({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Will you incur any expenses?",
+      classes: "nhsuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  },
+  hint: {
+    text: "As part of your application, you need to provide estimated expenses for things like accommodation, travel and subsistence"
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+<div class="nhsuk-button-group">
+ <a id="continue-button" href="#" class="nhsuk-button">Save and continue</a>
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+<script>
+  document.getElementById("continue-button").addEventListener("click", function (e) {
+    const selected = document.querySelector("input[name='example']:checked");
+
+    if (!selected) {
+      e.preventDefault();
+      alert("Please select an option");
+      return;
+    }
+
+    if (selected.value === "yes") {
+      this.href = "add-expense";
+    } else {
+      this.href = "approver-info";
+    }
+  });
+</script>
+
+
+ {% endblock %}

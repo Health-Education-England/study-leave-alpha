@@ -1,0 +1,294 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+Future study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab {
+    margin-top: 10px !important;
+  }
+
+  th,
+  td {
+    font-size: 17px !important;
+  }
+
+  .nhsuk-table__row:hover {
+    background-color: #ffffff !important;
+  }
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <h1 style="margin-bottom: 0px;" class="nhsuk-heading-l">Study leave dashboard</h1>
+    <p class="nhsuk-hint" style="margin-top: 0px;">Keep track of study leave applications and expenses claims for your
+      region</p>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+
+    <div class="nhsuk-grid-row">
+
+
+
+
+      <div class="nhsuk-grid-column-one-half">
+        <div class="row"
+          style="background-color: #ffffff; padding: 15px; display: flex; flex-direction: column; align-items: flex-start;">
+          <h3 class="nhsuk-heading-s" style="margin-bottom: 0px;">Manage pre-approved courses</h3>
+          <span>Add new pre-approved courses to the study leave database or edit information for existing
+            courses.</span>
+          <a class="" href="courses">Manage courses</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="m-studyleave">
+  {% from 'tables/macro.njk' import table %}
+
+  <h2 class="nhsuk-heading-m" style="margin-top: 30px;">Study leave applications</h2>
+
+
+
+
+
+  {# Filters row above the table #}
+  <div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+        <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="search-applications">
+              Search applications
+            </label>
+            <input class="nhsuk-input" id="search-applications" name="search" type="text" inputmode="search"
+              placeholder="Start typing" aria-describedby="search-applications" />
+
+          </div>
+        </div>
+
+        <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="status-select">Filter by status</label>
+            <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+              <option value="all" selected>All</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+      <!--Space for show items if required from the team -->
+    </div>
+  </div>
+
+
+  <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+    <h2 class="nhsuk-tabs__title">
+
+    </h2>
+    <ul class="nhsuk-tabs__list">
+      <li class="nhsuk-tabs__list-item nhsuk-tabs__list-item--selected">
+        <a class="nhsuk-tabs__tab" href="#applications">
+          Applications
+        </a>
+      </li>
+      <li class="nhsuk-tabs__list-item">
+        <a class="nhsuk-tabs__tab" href="#expense">
+          Expense claims
+        </a>
+      </li>
+
+    </ul>
+    
+    <div class="nhsuk-tabs__panel" id="applications">
+
+
+
+      {{ table({
+      responsive: true,
+      panel: false,
+      firstCellIsHeader: false,
+      head: [
+      { text: "Course/event" },
+      { text: "Applicant" },
+      { text: "Date submitted", format: "text" },
+      { text: "Status", format: "text" },
+      { text: "Action", format: "text" }
+
+      ],
+      rows: [
+    
+        [
+        { html: '<a href="#">Consultant Interview Course</a>' },
+        { html: '<span>Charlotte Evans</span>' },
+       { html: '15 Nov 2025 ', format: "text" },
+
+        
+        { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' },
+        { html: '<a href="#">View</a>' }
+        ],
+        [
+        { html: '<a href="#">RCEM Emergency Medicine Conference</a>' },
+        { html: '<span>Charlie Fletcher</span>' },
+         { html: '15 Nov 2025 ', format: "text" },
+
+      
+        { html: '<strong class="nhsuk-tag nhsuk-tag--yellow">Pending</strong>' },
+        { html: '<a href="#">View</a>' }
+        ],
+        [
+        { html: '<a href="#">Awake Fibreoptic Intubation Course (AFOI)</a>' },
+        { html: '<span>Amelia Collins</span>' },
+         { html: '14 Nov 2025 ', format: "text" },
+       
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View</a>' }
+        ],
+        [
+        { html: '<a href="#">Critically Ill Child Recognition & Stabilisation Course</a>' },
+        { html: '<span>Daniel Osei</span>' },
+         { html: '14 Nov 2025 ', format: "text" },
+      
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View</a>' }
+        ],
+        [
+        { html: '<a href="#">Paediatric Simulation Training</a>' },
+        { html: '<span>Robert Hughes</span>' },
+         { html: '14 Nov 2025 ', format: "text" },
+  
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View</a>' }
+        ],
+        [
+        { html: '<a href="#">Human Factors Training</a>' },
+        { html: '<span>Aisha Ahmad</span>' },
+          { html: '13 Nov 2025 ', format: "text" },
+   
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View</a>' }
+        ]
+        ]
+        }) }}
+
+    </div>
+
+   
+    
+    
+    <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="expense">
+
+      {{ table({
+      responsive: false,
+      panel: false,
+      firstCellIsHeader: false,
+      head: [
+      { text: "Course/event" },
+      { text: "Applicant" },
+      { text: "Date submitted", format: "text" },
+
+      { text: "Status", format: "text" }
+
+      ],
+      rows: [
+      [
+      { html: '<a href="summary-paid"> Advanced Trauma Life Support (ATLS)</a>' },
+      { html: '<span>James Smith</span>' },
+      { html: '18 Nov 2025 ', format: "text" },
+      
+        { html: '<span>Claim approved</span>' }
+      ],
+      [
+      { html: '<a href="#">European Paediatric Advanced Life Support (EPALS)</a>'},
+      { html: '<span>Oliver Grant</span>' },
+       { html: '15 Nov 2025 ', format: "text" },
+     
+      { html: '<span>Auto approved</span>' }
+      ],
+      [
+      { html: '<a href="#">Advanced Paediatric Life Support (APLS)</a>'},
+      { html: '<span>Sophie Williams</span>' },
+       { html: '15 Nov 2025 ', format: "text" },
+  
+      { html: '<span>Auto approved</span>' }
+      ],
+      [
+      { html: '<a href="#">MIMMS – Major Incident Medical Management & Support</a>'},
+      { html: '<span>Priya Mehta</span>' },
+       { html: '15 Nov 2025 ', format: "text" },
+  
+      { html: '<span>Claim approved</span>' }
+      ],
+      [
+      { html: '<a href="#">Trauma Care UK Annual Conference</a>'},
+      { html: '<span>Henry Collins</span>' },
+     { html: '14 Nov 2025 ', format: "text" },
+     
+      { html: '<span>Claim rejected</span>' }
+      ],
+      [
+      { html: '<a href="#">RCUK CPR & Resuscitation Science Conference</a>'},
+      { html: '<span>Emily Foster</span>' },
+        { html: '14 Nov 2025 ', format: "text" },
+      { html: '<span>Claim approved</span>' }
+      ]
+      ]
+      }) }}
+
+    </div>  
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

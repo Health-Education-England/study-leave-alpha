@@ -1,0 +1,299 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Event/Course details</h1>
+
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Type of study leave",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Pre-approved",
+      selected: true
+    },
+    {
+      value: 2,
+      text: "Discretionary"
+      
+    },
+    {
+      value: 3,
+      text: "International"
+    }
+  ]
+}) }}
+
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Study activity",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Study",
+      selected: true
+    },
+    {
+      value: 2,
+      text: "Exam"
+      
+    },
+    {
+      value: 3,
+      text: "Revision"
+    },
+    {
+      value: 4,
+      text: "Training/Teaching"
+    },
+    {
+      value: 5,
+      text: "Conference"
+    },
+    {
+      value: 6,
+      text: "Course"
+    }
+  ]
+}) }}
+
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Event/Course title",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Select the course",
+      selected: true
+    },
+    {
+      value: 2,
+      text: "Course 1"
+      
+    },
+    {
+      value: 3,
+      text: "Course 2"
+    }
+  ]
+}) }}
+<p>
+<a href="#">View all pre-approved courses</a>
+</p>
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "Provider details",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, example text here"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+</div>
+
+
+<div class="inputmaxwidth">
+{% from 'textarea/macro.njk' import textarea %}
+
+{{ textarea({
+  name: "example",
+  id: "example",
+  label: {
+    text: "Provide the supporting information",
+    classes: "nhsuk-label--s",
+    isPageHeading: "true"
+  },
+  hint: {
+    text: "For example, example support info come here"
+  }
+}) }}
+</div>
+
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "Course location",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, 'Leeds, Glasgow' etc"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+</div>
+
+
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "example",
+  namePrefix: "example",
+  fieldset: {
+    legend: {
+      text: "Start date",
+      classes: "nhsuk-label--s"
+    }
+  },
+  hint: {
+    text: "For example, 15 11 2025"
+  },
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{{ dateInput({
+  id: "example-2",
+  namePrefix: "example-2",
+  fieldset: {
+    legend: {
+      text: "End date",
+      classes: "nhsuk-label--s"
+    }
+  },
+  hint: {
+    text: "For example, 17 11 2025"
+  },
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+{% from 'input/macro.njk' import input %}
+
+<div class="inputmaxwidth">
+{{ input({
+  label: {
+    text: "Number of days requested",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "This is the number of days you’ll be using from your study leave allowance. For example, weekends can’t be counted as study leave days for your activities."
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+</div>
+
+
+
+
+
+{% from 'radios/macro.njk' import radios %}
+
+{{ radios({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Will you incur any expenses for this study opportunity 
+for example, course fee, hotel, travel?",
+      classes: "nhsuk-fieldset__legend--s",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+<a href="add-expense" class="nhsuk-button">Save and continue</a>
+
+
+
+
+ {% endblock %}

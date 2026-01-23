@@ -1,0 +1,579 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+ Advanced Trauma Life Support (ATLS) application - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .sl-summary-title .nhsuk-summary-list__row {border-bottom: 0px solid #d8dde0;}
+  .sl-summary-title .nhsuk-summary-list { margin-bottom: 0px !important;}
+     th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+
+
+
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Application details for Ultrasound-Guided Regional Anaesthesia: Advanced Practical Course</h1>
+ 
+
+   <h2 class="nhsuk-heading-s">Application timeline</h2>    
+<div class="nhs-progress">
+  <ol style="margin-bottom: 30px;" class="nhs-progress__list">
+    <li class="nhs-progress__item nhs-progress__item--complete">
+      <span class="nhs-progress__icon"></span>
+      <span class="nhs-progress__text">Application submitted</span>
+    </li>
+
+    
+
+    <li class="nhs-progress__item nhs-progress__item--current">
+      <span class="nhs-progress__icon"></span>
+      <span class="nhs-progress__text">Awaiting approval by Sebastian Nari </span>
+    </li>
+
+    <li class="nhs-progress__item nhs-progress__item--current">
+      <span class="nhs-progress__icon"></span>
+      <span class="nhs-progress__text">Awaiting admin approval</span>
+    </li>
+
+  
+  </ol>
+</div>
+
+
+<style>
+  .nhs-progress {
+  font-family: "Frutiger W01", Arial, sans-serif;
+}
+
+.nhs-progress__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.nhs-progress__list::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #005eb8;
+}
+
+.nhs-progress__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 0 24px 0;
+}
+
+.nhs-progress__item:last-child {
+  padding-bottom: 0;
+}
+
+
+.nhs-progress__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #005eb8;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+
+.nhs-progress__item--complete .nhs-progress__icon {
+  background: #005eb8; 
+  border-color: #005eb8;
+}
+
+.nhs-progress__item--complete .nhs-progress__icon::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid #ffffff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+
+.nhs-progress__item--current .nhs-progress__icon {
+  background: #ffffff;
+  border-color: #005eb8;
+}
+
+
+.nhs-progress__text {
+  font-size: 19px;
+  line-height: 1.4;
+  color: #212b32;
+  padding-top: 2px;
+}
+
+</style>
+
+    
+
+   
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Course or event details </h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Study type "
+      },
+      value: {
+         text: "Discretionary"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+         text: "Course"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Course or event name "
+      },
+      value: {
+         text: "Ultrasound-Guided Regional Anaesthesia: Advanced Practical Course"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "RCS (Royal College of Surgeons)"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information"
+      },
+      value: {
+         text: "N/A"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+    
+  ]
+}) }}
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Location and date</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "3 Feb 2026"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "4 Feb 2026"
+      },
+      actions: {
+        
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    },
+    
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "London"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Estimated expenses</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+     View estimated expenses (£1405)
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+   
+
+<div class="expense-added" id="expenses">
+{{ table({
+  responsive: false,
+  panel: false,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Expense" },
+    { text: "Type", format: "text" },
+
+    { text: "Cost", format: "numeric" }
+    
+   
+   
+  ],
+  rows: [
+    [
+      { html: 'Course' },
+      { text: "Course fee"},
+     
+      { text: "£999", format: "numeric" }
+       
+       ],
+           [
+      { html: 'Travel' },
+      { text: "Train"},
+     
+       
+        { text: "£93", format: "numeric" }
+       ],
+           [
+      { html: 'Accommodation' },
+      { text: "2 nights"},
+      
+ 
+       { text: "£313", format: "numeric" }
+       ],
+           [
+      { html: '<b>Total</b>' },
+      { text: ""},
+      
+        { html: '<b>£1405</b>', format: "numeric"  }
+       ]
+  ]
+}) }}
+</div>
+
+</div></details>
+
+
+
+
+<!--<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Approval history</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+     View approval history
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+   
+
+<div class="expense-added" id="expenses">
+{{ table({
+  responsive: false,
+  panel: false,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Approved by" },
+    { text: "Role", format: "text" },
+    { text: "Approved on", format: "text" },
+    { text: "Comments", format: "text" }
+  ],
+  rows: [
+    [
+      { html: 'Dr Henry Howard' },
+      { text: "Training Programme Director"},
+      { text: "20/11/2025"},
+      { text: "N/A"}
+     ]
+  ]
+}) }}
+</div>
+
+</div></details>-->
+
+
+
+
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Applicant information</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        text: "James"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Smith"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Hospital or trust"
+      },
+      value: {
+        text: "Leeds Teaching Hospitals NHS Trust"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Job role"
+      },
+      value: {
+        text: "Resident doctor"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+         text: "james.smith@nhs.net"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Declaration"
+      },
+      value: {
+         text: "Accepted"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    }
+  ]
+}) }}
+    
+
+
+
+</div>
+</div>
+
+
+
+
+ {% endblock %}
+ 

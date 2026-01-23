@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Approver information</h1>
+
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "Approver’s first name",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+
+ {{ input({
+  label: {
+    text: "Approver’s last name",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+</div>
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Approver’s job role",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Example job role 1",
+      selected: true
+    },
+    {
+      value: 2,
+      text: "Example job role 2"
+      
+    },
+    {
+      value: 3,
+      text: "Example job role 3"
+    }
+  ]
+}) }}
+
+<div class="inputmaxwidth">
+
+ {{ input({
+  label: {
+    text: "Approver’s email address",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+</div>
+
+
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+<a href="summary" class="nhsuk-button">Save and continue</a>
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Approver information</h1>
+   <p class="nhsuk-hint">Provide the details of the person who’ll decide if the course or event you’re applying for is appropriate to your professional development plan. This is usually your Training Programme Director (TPD)</p>
+
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "First name",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+
+ {{ input({
+  label: {
+    text: "Last name",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+</div>
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Job role",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    { value: "Select", text: "Select" },
+    { value: "educational-supervisor", text: "Educational Supervisor" },
+    { value: "clinical-supervisor", text: "Clinical Supervisor" },
+    { value: "college-tutor-anaesthetics", text: "College Tutor (Anaesthetics)" },
+    { value: "faculty-tutor-icm", text: "Faculty Tutor (ICM)" },
+    { value: "tpd-anaesthetics", text: "Training Programme Director (Anaesthetics)" },
+    { value: "tpd-icm", text: "Training Programme Director (ICM)" },
+    { value: "head-of-school-anaesthesia-icm", text: "Head of School (Anaesthesia & ICM)" },
+    { value: "medical-education-manager", text: "Medical Education Manager" },
+    { value: "medical-education-officer", text: "Medical Education Officer" },
+    { value: "director-of-medical-education", text: "Director of Medical Education" },
+    { value: "departmental-manager", text: "Departmental Manager" },
+    { value: "clinical-lead-anaesthesia", text: "Clinical Lead for Anaesthesia" },
+    { value: "clinical-lead-icm", text: "Clinical Lead for Intensive Care Medicine" },
+    { value: "consultant-anaesthetist", text: "Consultant Anaesthetist" },
+    { value: "consultant-icm", text: "Consultant in Intensive Care Medicine" }
+  ]
+}) }}
+
+
+<div class="inputmaxwidth">
+
+ {{ input({
+  label: {
+    text: "Email address",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+</div>
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Do you want to save this information?",
+      classes: "nhsuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "Save for future study leave applications ",
+      text: "Save for future study leave applications "
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "summary"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+
+
+ {% endblock %}

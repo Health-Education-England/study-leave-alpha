@@ -31,44 +31,315 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       <!-- You can delete the lines below -->
-      <h2 class="nhsuk-heading-l">
-        NHS prototype kit
-        <span class="nhsuk-caption-xl nhsuk-caption--bottom">Version {{version}}</span>
-      </h2>
+      <h1 class="nhsuk-heading-l">
+        Study leave prototype
+      </h1>
       <hr>
 
 
       <!-- Add your content here -->
       <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
 
-      <h1 class="nhsuk-heading-xl">
-        {{ serviceName }}
-      </h1>
-
-      <p>Set the service name for your prototype by editing <strong>/app/config.js</strong>.</p>
-
-      <p>
-        This is the index page for your prototype. You can find it at <strong>/app/views/index.html</strong>.
-      </p>
-
-      <hr>
-
-      <h2 class="nhsuk-heading-l">
-        Get started
+    
+    
+  
+      <h2 class="nhsuk-heading-m">
+        Version 6
+        <span class="nhsuk-caption-l nhsuk-caption--bottom"></span>
+         <strong class="nhsuk-tag nhsuk-tag--green">Final prototype</strong>
       </h2>
 
-      <ul class="nhsuk-list nhsuk-list--bullet">
-        <li>
-          <a href="https://prototype-kit.service-manual.nhs.uk/how-tos">NHS prototype kit guides</a> – including a tutorial
-        </li>
-        <li>
-          <a href="https://service-manual.nhs.uk/design-system">NHS digital service manual</a> – for code snippets and guidance on using NHS styles, components and patterns
-        </li>
-      </ul>
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-mandatory-v6/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant mandatory",
+      headingClasses: "nhsuk-heading-m",
+      description: "Applicant flow for Mandatory courses"
+    }) }}
+  </li>
 
-      <p>
-        There is a selection of <a href="/example-templates">example page templates</a> in <strong>/lib/example-templates/</strong>. To use these, copy and paste them into <strong>/app/views/</strong>.
-      </p>
+    <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-discretionary-v6/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant discretionary",
+      headingClasses: "nhsuk-heading-m",
+      description: "Applicant flow for discretionary courses"
+    }) }}
+  </li>
+
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-international-v6/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant international",
+      headingClasses: "nhsuk-heading-m",
+      description: "Applicant flow for international courses"
+    }) }}
+  </li>
+
+  
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin-v6/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin",
+      headingClasses: "nhsuk-heading-m",
+      description: "Admin flow"
+    }) }}
+  </li>
+
+
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "approver-v6",
+      primary: "true",
+      clickable: "true",
+      heading: "Approver",
+      headingClasses: "nhsuk-heading-m",
+      description: "Approver flow"
+    }) }}
+  </li>
+
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "other-v6",
+      primary: "true",
+      clickable: "true",
+      heading: "Other screens",
+      headingClasses: "nhsuk-heading-m",
+      description: "Eg. Error screens"
+    }) }}
+  </li>
+  </ul>
+  
+  
+  
+
+      <!-- Add your content here -->
+      <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
+
+    
+    
+  
+      <h2 class="nhsuk-heading-m">
+        Version 5
+        <span class="nhsuk-caption-l nhsuk-caption--bottom"></span>
+         
+      </h2>
+
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-v5/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant",
+      headingClasses: "nhsuk-heading-m",
+      description: "WiP - Final flow changes based on new insights"
+    }) }}
+  </li>
+
+    <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin-v5/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin",
+      headingClasses: "nhsuk-heading-m",
+      description: "WiP - Final flow changes based on new insights"
+    }) }}
+  </li>
+
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "approver/applications",
+      primary: "true",
+      clickable: "true",
+      heading: "Approver",
+      headingClasses: "nhsuk-heading-m",
+      description: "WiP - Final flow changes based on new insights"
+    }) }}
+  </li>
+  
+  </ul>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="nhsuk-heading-m">
+        Version 4
+        <span class="nhsuk-caption-l nhsuk-caption--bottom"></span>
+         <strong class="nhsuk-tag nhsuk-tag--green">Latest</strong> <strong class="nhsuk-tag nhsuk-tag--blue">Used for user testing</strong> 
+      </h2>
+
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-v4/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant",
+      headingClasses: "nhsuk-heading-m",
+      description: "Changes based on user testing"
+    }) }}
+  </li>
+ <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin-b/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin",
+      headingClasses: "nhsuk-heading-m",
+      description: "Another option for dashboard without tabs"
+    }) }}
+  </li>
+   <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" style="display: none;">
+    {{ card({
+      href: "admin-v3/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin (Tabs)",
+      headingClasses: "nhsuk-heading-m",
+      description: "Changes on the dashboard layout and screens"
+    }) }}
+  </li>
+ 
+  
+  </ul>
+     
+
+
+
+
+
+   
+      <!-- You can delete the lines below -->
+      <h2 class="nhsuk-heading-m">
+        Version 3
+        <span class="nhsuk-caption-l nhsuk-caption--bottom"></span>
+        
+      </h2>
+
+
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-v3/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant",
+      headingClasses: "nhsuk-heading-m",
+      description: "Changes on the dashboard layout and screens"
+    }) }}
+  </li>
+  
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin-v3/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin",
+      headingClasses: "nhsuk-heading-m",
+      description: "Changes on the dashboard layout and screens"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin-b/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin-B",
+      headingClasses: "nhsuk-heading-m",
+      description: "Another option for dashboard without tabs"
+    }) }}
+  </li>
+  </ul>
+      <!-- End of content -->
+       
+      
+      
+      
+      <!-- You can delete the lines below -->
+      <h2 class="nhsuk-heading-m">
+        Version 2
+        <span class="nhsuk-caption-l nhsuk-caption--bottom"></span>
+       
+      </h2>
+
+
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant-v2/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant",
+      headingClasses: "nhsuk-heading-m",
+      description: "Applicant with provision to manage application and claim expenses"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin-v2/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin",
+      headingClasses: "nhsuk-heading-m",
+      description: "Admin with provision to manage application and expenses"
+    }) }}
+  </li>
+  </ul>
+      <!-- End of content -->
+
+
+
+     <!-- You can delete the lines below -->
+      <h2 class="nhsuk-heading-m">
+        Version 1
+        <span class="nhsuk-caption-l nhsuk-caption--bottom"></span>
+      
+      </h2>
+
+
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "applicant/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Applicant",
+      headingClasses: "nhsuk-heading-m",
+      description: "Basic applicant flow"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "admin/dashboard",
+      primary: "true",
+      clickable: "true",
+      heading: "Admin",
+      headingClasses: "nhsuk-heading-m",
+      description: "Basic admin this flow"
+    }) }}
+  </li>
+  </ul>
       <!-- End of content -->
 
     </div>

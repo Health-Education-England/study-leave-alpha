@@ -1,0 +1,553 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .sl-summary-title .nhsuk-summary-list__row {border-bottom: 0px solid #d8dde0;}
+  .sl-summary-title .nhsuk-summary-list { margin-bottom: 0px !important;}
+     th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+
+
+
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Advanced Trauma Life Support (ATLS) application</h1>
+ 
+
+    
+
+   
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Course/event details </h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Course code"
+      },
+      value: {
+         text: "ATLS16"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study type "
+      },
+      value: {
+         text: "Mandatory"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+         text: "Course"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Course/event name "
+      },
+      value: {
+         text: "Advanced Trauma Life Support (ATLS)"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "RCS (Royal College of Surgeons)"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information"
+      },
+      value: {
+         text: "N/A"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+    
+  ]
+}) }}
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Location and date</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "3 Feb 2026"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "4 Feb 2026"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "London"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Reimbursed expenses</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+     Reimbursed expenses (£1505)
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+   
+
+<div class="expense-added" id="expenses">
+{{ table({
+  responsive: false,
+  panel: false,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Expense" },
+    { text: "Type", format: "text" },
+
+    { text: "Cost", format: "numeric" }
+    
+   
+   
+  ],
+  rows: [
+    [
+      { html: 'Course' },
+      { text: "Course fee"},
+     
+      { text: "£999", format: "numeric" }
+       
+       ],
+           [
+      { html: 'Travel' },
+      { text: "Train"},
+     
+       
+        { text: "£193", format: "numeric" }
+       ],
+           [
+      { html: 'Accommodation' },
+      { text: "2 nights"},
+      
+ 
+       { text: "£313", format: "numeric" }
+       ],
+           [
+      { html: '<b>Total</b>' },
+      { text: ""},
+      
+        { html: '<b>£1405</b>', format: "numeric"  }
+       ]
+  ]
+}) }}
+</div>
+
+</div></details>
+
+
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Approval history</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+<p>This application is for a mandatory course. The applicant indicated they have gained approval from their Educational or Clinical Supervisor prior to submitting this application. Therefore no further approval is required.</p>
+
+
+
+
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Applicant information</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "approver-info",
+            text: "",
+            visuallyHiddenText: "approver details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        text: "James"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Smith"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Hospital / Trust"
+      },
+      value: {
+        text: "Leeds Teaching Hospitals NHS Trust"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Job role"
+      },
+      value: {
+        text: "Resident doctor"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+         text: "james.smith@nhs.net"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Declaration"
+      },
+      value: {
+         text: "Accepted"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+    
+
+
+</div>
+</div>
+
+
+
+
+{% from 'button/macro.njk' import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Return to your dashboard",
+    classes: "nhsuk-button",
+      href: "dashboard-claim-approved"  
+    
+  }) }}
+</div>
+
+
+ {% endblock %}
+ 

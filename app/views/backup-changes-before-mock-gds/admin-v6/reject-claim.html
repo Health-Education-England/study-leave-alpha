@@ -1,0 +1,351 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+Reason for sending back to applicant – NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select, 
+  .nhsuk-input {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  /* Hide button by default */
+  #add-expense-btn {
+    display: none;
+    margin-top: 20px;
+  }
+    th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+     .expense-note {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  color: #4c6272; /* NHS greys */
+}
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Expense claim</span>
+    <h1 class="nhsuk-heading-l">Reason for sending back to applicant</h1>
+<p class="nhsuk-hint">Provide the reason you’ll not be approving this expenses claim</p>
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+     View expenses claim (£1458.40)
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+   
+
+   
+<div class="expense-added" id="expenses">
+
+{{ table({
+  responsive: true,
+  panel: false,
+  caption: "Expenses added",
+  firstCellIsHeader: false,
+  head: [
+    { text: "Expense" },
+    { text: "Type", format: "text" },
+    { text: "Receipt", format: "text" },
+    { text: "Estimated cost", format: "numeric" },
+    { text: "Actual cost", format: "numeric" }
+  ],
+  rows: [
+    [
+      { html: 'Course' },
+      { text: "Course fee"},
+      { html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£999", format: "numeric" },
+      { text: "£999", format: "numeric" }
+    ],
+    [
+      { html: 'Travel', classes: 'nhsuk-tag--yellow' },
+      { text: "Train" , classes: "nhsuk-tag--yellow" },
+      { html: '<a href="#" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>', classes: 'nhsuk-tag--yellow'},
+      { text: "£93", format: "numeric" , classes: "nhsuk-tag--yellow" },
+      {
+        html: '<span style="background-color: #f7d4d1;color: #6b140e;border: 1px solid #6b140e;padding: 2px;">£193</span> <span style="font-size: 12px;line-height: 18px !important;font-weight: bold;">£100 more</span>',
+        format: "numeric",
+        classes: "nhsuk-tag--yellow"
+      }
+    ],
+    [
+      { html: 'Travel' },
+      { text: "Car park"},
+      { html: '<a href="#" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£12", format: "numeric" },
+      { text: "£12", format: "numeric" }
+    ],
+    [
+      { html: 'Travel' },
+      { text: "Millage - 32 miles"},
+      { html: '<a href="#" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£14.40", format: "numeric" },
+      { text: "£14.40", format: "numeric" }
+    ],
+    [
+      { html: 'Accommodation' },
+      { text: "2 nights"},
+      { html: '<a href="#" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£240", format: "numeric" },
+      { text: "£240", format: "numeric" }
+    ],
+    [
+      { html: '<b>Total</b>' },
+      { text: ""},
+       { text: ""},
+      { html: '<b>£1358.40</b>', format: "numeric"  },
+      { html: '<b>£1458.40</b>', format: "numeric"  }
+    ]
+  ]
+}) }}
+
+</div>
+
+  </div>
+</details>
+
+   <div class="inputmaxwidth">
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+{% from "textarea/macro.njk" import textarea %}
+
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example[]",
+  fieldset: {
+   legend: {
+  text: "Select reason for sending back to applicant",
+  classes: "nhsuk-fieldset__legend--s"
+}
+  },
+  items: [
+    {
+      value: "cost-higher",
+      text: "Cost is higher than original estimate"
+    },
+    {
+      value: "deadline-passed",
+      text: "Deadline for expenses claim has passed"
+    }, 
+    {
+      value: "receipts-not-readable",
+      text: "Submitted receipts are not readable"
+    },
+    {
+      value: "incorrect-receipts",
+      text: "Incorrect receipts submitted"
+    },
+    {
+      value: "other",
+      text: "Other",
+      conditional: {
+        html: textarea({
+          id: "other-reason",
+          name: "other-reason",
+          label: {
+            text: "Provide a reason for sending back to the applicant"
+          }
+        })
+      }
+    }
+  ]
+}) }}
+
+</div>
+
+ 
+
+<div class="nhsuk-form-group">
+  <h2 class="nhsuk-label-wrapper">
+    <label class="nhsuk-label nhsuk-label--m" for="message-to-applicant">
+      Message to applicant
+    </label>
+  </h2>
+  <div id="message-hint" class="nhsuk-hint">
+  Hint text comes here
+  </div>
+  <textarea class="nhsuk-textarea" id="message-to-applicant" name="message-to-applicant" rows="10" aria-describedby="message-hint">Dear James Smith,
+This application is being returned to you because of the following reasons:
+
+
+
+Thanks,
+Harry Smith
+  </textarea>
+</div>
+
+
+
+
+<div class="nhsuk-button-group">
+{{ button({
+  text: "Send to applicant",
+  classes: "nhsuk-button",
+  href: "reject-success"  
+}) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "#" 
+  }) }}
+</div>
+
+ 
+ </div>
+</div>
+
+<script>
+(function () {
+  // Wait for DOM
+  function domReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  domReady(function () {
+   
+    const checkboxes = Array.from(document.querySelectorAll('input[name="example[]"]'));
+    const otherCheckbox = checkboxes.find(cb => cb.value === 'other');
+    const otherTextarea = document.getElementById('other-reason'); // conditional textarea
+    const messageTextarea = document.getElementById('message-to-applicant'); // Message to applicant textarea
+
+    if (!checkboxes.length || !messageTextarea) return;
+
+   
+    const startMarker = 'This application is being returned to you because of the following reasons:';
+    const endMarkerCandidates = ['Thanks,', 'Kind regards,', 'Regards,', 'Yours sincerely,'];
+
+    function getLabelForCheckbox(cb) {
+    
+      if (!cb.id) return cb.value;
+      const label = document.querySelector(`label[for="${cb.id}"]`);
+      if (label) return label.textContent.trim();
+    
+      const parent = cb.closest('.nhsuk-checkboxes__item') || cb.parentElement;
+      if (parent) {
+        const textNode = parent.querySelector('label') || parent;
+        return textNode.textContent.trim();
+      }
+      return cb.value;
+    }
+
+    function buildReasonsList() {
+      const selected = checkboxes.filter(cb => cb.checked);
+      if (!selected.length) return '';
+
+     
+      const lines = selected.map((cb, idx) => {
+        const labelText = getLabelForCheckbox(cb);
+        if (cb.value === 'other') {
+          const otherText = (otherTextarea && otherTextarea.value.trim()) ? ` : ${otherTextarea.value.trim()}` : '';
+          return `- ${labelText}${otherText}`;
+        }
+        return `- ${labelText}`;
+      });
+
+      return lines.join('\n');
+    }
+
+    function replaceReasonsInMessage() {
+      const full = messageTextarea.value || '';
+      const lines = full.split(/\r?\n/);
+
+      
+      const startIdx = lines.findIndex(l => l.trim() === startMarker);
+
+     
+      if (startIdx === -1) {
+       
+        let sigIdx = lines.findIndex(l => endMarkerCandidates.includes(l.trim()));
+        if (sigIdx === -1) sigIdx = lines.length;
+
+        const before = lines.slice(0, sigIdx); 
+        const after = lines.slice(sigIdx); 
+        const reasonsText = buildReasonsList();
+
+        if (!reasonsText) {
+         
+          messageTextarea.value = full.trim();
+          return;
+        }
+
+       
+        const assembled = []
+          .concat(before.map(s => s))
+          .concat(['', startMarker, reasonsText, ''])
+          .concat(after);
+
+        messageTextarea.value = assembled.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+        return;
+      }
+
+      // Marker present: find end (signature) after it
+      let endIdx = lines.length;
+      for (let i = startIdx + 1; i < lines.length; i++) {
+        if (endMarkerCandidates.includes(lines[i].trim())) {
+          endIdx = i;
+          break;
+        }
+      }
+
+      const beforeMarker = lines.slice(0, startIdx); // keep lines before marker
+      const afterMarker = lines.slice(endIdx); // keep signature onwards
+      const reasonsText = buildReasonsList();
+
+      const middle = reasonsText ? [startMarker, reasonsText] : []; // if no reasons, remove marker + reasons
+
+      const assembled = []
+        .concat(beforeMarker)
+        .concat(middle)
+        .concat(afterMarker);
+
+      messageTextarea.value = assembled.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    // Wire up events
+    checkboxes.forEach(cb => cb.addEventListener('change', replaceReasonsInMessage));
+    if (otherTextarea) {
+      otherTextarea.addEventListener('input', function () {
+        if (otherCheckbox && otherCheckbox.checked) replaceReasonsInMessage();
+      });
+    }
+
+    // Initial run (in case of pre-checked items)
+    replaceReasonsInMessage();
+  });
+})();
+</script>
+{# ---- end script ---- #}
+
+{% endblock %}

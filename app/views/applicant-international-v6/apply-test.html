@@ -1,0 +1,185 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+{% from 'input/macro.njk' import input %}
+{% from 'select/macro.njk' import select %}
+{% from 'textarea/macro.njk' import textarea %}
+{% from 'back-link/macro.njk' import backLink %}
+
+{% block pageTitle %}
+  International course or event details - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+  select { border-radius: 0 !important; }
+  .sl-back .nhsuk-back-link {
+    padding-top: 0;
+    margin-bottom: 20px;
+  }
+  .apply-sl .nhsuk-select,
+  .apply-sl .inputmaxwidth {
+    min-width: 450px;
+    max-width: 450px;
+  }
+</style>
+
+<div class="sl-back">
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">International course or event details</h1>
+
+    <div class="nhsuk-progress inputmaxwidth" role="progressbar"
+      aria-valuenow="1"
+      aria-valuemin="1"
+      aria-valuemax="4"
+      aria-label="Page 1 of 4">
+      <div class="nhsuk-progress__bar" style="width: calc(1 / 4 * 100%);"></div>
+    </div>
+
+    <span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+      Page 1 of 4
+    </span>
+
+    <div class="nhsuk-inset-text nhsuk-context-banner inputmaxwidth">
+      <p class="nhsuk-body-s">
+        <strong>International application for:</strong><br><br>
+        <strong>Grade:</strong> ST3<br>
+        <strong>Specialty:</strong> Anaesthesiology<br>
+        <strong>Region:</strong> London<br>
+        <a class="nhsuk-link" href="#">
+          Change <span class="nhsuk-u-visually-hidden">
+            training stage, specialty or region
+          </span>
+        </a>
+      </p>
+    </div>
+
+    <!-- Type of study leave (locked) -->
+    {{ select({
+      id: "type-of-study",
+      name: "typeOfStudy",
+      label: {
+        text: "Type of study leave",
+        classes: "nhsuk-label--s"
+      },
+      items: [
+        { value: "international", text: "International", selected: true }
+      ]
+    }) }}
+
+    <!-- Study activity -->
+    {{ select({
+      id: "study-activity",
+      name: "studyActivity",
+      label: {
+        text: "Study leave activity",
+        classes: "nhsuk-label--s"
+      },
+      items: [
+        { value: "select", text: "Select", selected: true },
+        { value: "conference", text: "Conference" },
+        { value: "course", text: "Course" },
+        { value: "exam", text: "Exam" }
+      ]
+    }) }}
+
+    <!-- Course or event name -->
+    <div class="inputmaxwidth">
+      {{ input({
+        id: "event-title",
+        name: "eventTitle",
+        label: {
+          text: "Course or event name",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Enter the full official name of the international course, conference or exam"
+        }
+      }) }}
+    </div>
+
+    <!-- Country -->
+    <div class="inputmaxwidth">
+      {{ input({
+        id: "event-country",
+        name: "eventCountry",
+        label: {
+          text: "Country where the event takes place",
+          classes: "nhsuk-label--s"
+        }
+      }) }}
+    </div>
+
+    <!-- City / location -->
+    <div class="inputmaxwidth">
+      {{ input({
+        id: "event-location",
+        name: "eventLocation",
+        label: {
+          text: "City or location",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "For example, Paris, Berlin, New York"
+        }
+      }) }}
+    </div>
+
+    <!-- Provider -->
+    <div class="inputmaxwidth">
+      {{ input({
+        id: "course-event-provider",
+        name: "courseEventProvider",
+        label: {
+          text: "Course or event provider",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Organisation or institution running the international event"
+        }
+      }) }}
+    </div>
+
+    <!-- Supporting info -->
+    <div class="inputmaxwidth">
+      {{ textarea({
+        id: "supporting-information",
+        name: "supportingInformation",
+        label: {
+          text: "Supporting information (optional)",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Include justification for attending internationally, relevance to training, or visa requirements if applicable"
+        }
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "apply-date"
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard"
+  }) }}
+</div>
+
+{% endblock %}

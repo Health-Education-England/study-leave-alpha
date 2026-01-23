@@ -1,0 +1,403 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Course/event details - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  .hidden {display: none;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Course or event details</h1>
+
+<div class="nhsuk-progress inputmaxwidth" role="progressbar"
+     aria-valuenow="1"
+     aria-valuemin="1"
+     aria-valuemax="4"
+     aria-label="Page 1 of 4">
+  <div class="nhsuk-progress__bar" style="width: calc(1 / 4 * 100%);"></div>
+</div>
+
+<span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+  Page 1 of 4
+</span>
+
+<style>
+ .nhsuk-progress {
+  height: 12px;
+  background: #c3cace; /* NHS Grey 4 */
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.nhsuk-progress__bar {
+  height: 100%;
+  background: #007f3b; /* NHS Green */
+  transition: width 0.3s ease;
+  border-right:2px solid #ffffff;
+}
+.nhsuk-context-banner {
+  background-color: #ffffff; /* NHS “blue tints” */
+
+}
+
+</style>
+
+<div class="nhsuk-inset-text nhsuk-context-banner inputmaxwidth">
+  <p class="nhsuk-body-s" >
+    <strong>Showing courses or events for:</strong><br><strong><br>Grade: </strong>ST3
+    <br><strong>Specialty: </strong> Anaesthesiology
+    <br><strong>Region: </strong>London<br>
+    <a class="nhsuk-link" href="#">Change <span class="nhsuk-u-visually-hidden">
+    training stage, specialty or region
+  </span></a>
+  </p>
+</div>
+
+
+   {% from 'select/macro.njk' import select %}
+
+<!-- Type of study leave -->
+{{ select({
+  id: "type-of-study",
+  name: "typeOfStudy",
+  label: {
+    text: "Type of study leave",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: "Select",
+      text: "Select",
+      selected: true
+    },
+     {
+      value: "pre-approved",
+      text: "Mandatory"
+    },
+    {
+      value: "discretionary",
+      text: "Discretionary",
+      disabled: true
+    },
+    {
+      value: "international",
+      text: "International",
+      disabled: true
+    }
+  ]
+}) }}
+
+
+<!-- Study activity -->
+{{ select({
+  id: "study-activity",
+  name: "studyActivity",
+  label: {
+    text: "Study leave activity ",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: "Select",
+      text: "Select"
+    },
+     {
+      value: "exam",
+      text: "Exam"
+    },
+    {
+      value: "revision",
+      text: "Revision"
+    },
+    {
+      value: "conference",
+      text: "Conference"
+    },
+    {
+      value: "course",
+      text: "Course"
+    }
+  ]
+}) }}
+
+
+<div id="event-title-generic" class="inputmaxwidth">
+{{ select({
+  id: "select-event-generic",
+  name: "selectEventGeneric",
+  label: {
+    text: "Course or event",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Select",
+      selected: true
+    }
+  ]
+}) }}
+</div>
+
+
+<div id="event-title-revision" class="inputmaxwidth hidden">
+  {{ input({
+    label: {
+      text: "Describe what you’ll be doing",
+      classes: "nhsuk-label--s"
+    },
+    hint: {
+      text: ""
+    },
+    id: "event-title-text",
+    name: "eventTitleText"
+  }) }}
+</div>
+
+
+<div id="event-title-conference" class="inputmaxwidth hidden">
+{{ select({
+  id: "select-conference",
+  name: "selectConference",
+  label: {
+    text: "Conference name",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+   { value: "select", text: "Select" }, 
+    { value: "ics-soa", text: "Intensive Care Society SOA (State of the Art) Conference" },
+    { value: "ics-struggling", text: "Intensive Care Society Struggling to Cope Conference" },
+    { value: "ficm-annual", text: "Faculty of Intensive Care Medicine Annual Meeting" },
+    { value: "bts-winter", text: "British Thoracic Society Winter Meeting" },
+    { value: "rcem-em", text: "RCEM Emergency Medicine Conference" },
+    { value: "resus-uk", text: "Resuscitation Council UK Scientific Symposium" },
+    { value: "esicm-lives", text: "European Society of Intensive Care Medicine (ESICM) – LIVES" },
+    { value: "esaic-euro", text: "European Society of Anaesthesiology and Intensive Care (ESAIC) – Euroanaesthesia" },
+    { value: "das-annual", text: "DAS (Difficult Airway Society) Annual Meeting" },
+    { value: "ics-transfer", text: "ICS State of the Art Transfer & Retrieval Conference" },
+    { value: "ucl-anaesthesia", text: "UCL Anaesthesia & Perioperative Medicine Conference" },
+    { value: "periop-summit", text: "National Perioperative Medicine Summit (Centre for Perioperative Care)" },
+    { value: "assoc-anaesthetists", text: "Association of Anaesthetists Annual Congress" },
+    { value: "assoc-anaesthetists-winter", text: "Association of Anaesthetists Winter Scientific Meeting" },
+    { value: "pics-annual", text: "Paediatric Intensive Care Society (PICS) Annual Conference" },
+    { value: "bprs", text: "British Paediatric Respiratory Society Conference" },
+    { value: "neuroanaesthesia", text: "Neuroanaesthesia and Critical Care Society Annual Scientific Meeting" },
+    { value: "scacc", text: "Society for Cardiothoracic Anaesthesia and Critical Care Annual Meeting" },
+    { value: "trauma-care", text: "Trauma Care UK Annual Conference" },
+    { value: "mtc-network", text: "Major Trauma Centre Network Annual Meeting" },
+    { value: "ics-regional", text: "ICS Wales / ICS Scotland / ICS Ireland Regional Conferences" },
+    { value: "fficm-prep", text: "FFICM Exam Preparation Conference (various providers)" },
+    { value: "rcuk-cpr", text: "RCUK CPR & Resuscitation Science Conference" }
+  ]
+}) }}
+</div>
+
+<!-- Course select (shown when pre-approved + course) -->
+<div id="event-title-course" class="inputmaxwidth hidden">
+{{ select({
+  id: "select-course",
+  name: "selectCourse",
+  label: {
+    text: "Course name",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+   { value: "select", text: "Select" }, 
+    { value: "als", text: "Advanced Life Support (ALS)" },
+    { value: "atls", text: "Advanced Trauma Life Support (ATLS) / European Trauma Course (ETC)" },
+    { value: "cals", text: "Cardiac Advanced Life Support (CALS)" },
+    { value: "epals", text: "European Paediatric Advanced Life Support (EPALS)" },
+    { value: "apls", text: "Advanced Paediatric Life Support (APLS)" },
+    { value: "mimms", text: "MIMMS – Major Incident Medical Management & Support" },
+    { value: "transfer-stage1", text: "Stage 1: Transfer Course" },
+    { value: "transfer-programme", text: "Transfer Training Programme (ACCESS London or equivalent)" },
+    { value: "trach-skill", text: "Tracheostomy Skill Course" },
+    { value: "trach-bronch", text: "Tracheostomy / Bronchoscopy Skill Course" },
+    { value: "comm-skills", text: "Communication Skills Workshop (ICM)" },
+    { value: "stage1-basic", text: "Stage 1 BASIC (ICM)" },
+    { value: "stage2-sim", text: "Stage 2 High-Risk Scenarios / LSICM Simulation" },
+    { value: "organ-donor", text: "Care of the Potential Organ Donor – National Deceased Donation Course" },
+    { value: "feel", text: "Focused Echocardiography Course (FEEL / FUSIC Heart / fTOE)" },
+    { value: "fusic", text: "Focused Ultrasound in Intensive Care (FUSIC)" },
+    { value: "difficult-airway", text: "Difficult Airway Course (e.g., DAMIT)" },
+    { value: "adv-airway", text: "Advanced Airway Course" },
+    { value: "airway", text: "Airway Course" },
+    { value: "afoi", text: "Awake Fibreoptic Intubation Course (AFOI)" },
+    { value: "airway-matters", text: "Airway Matters" },
+    { value: "crit-child", text: "Critically Ill Child Recognition & Stabilisation Course" },
+    { value: "paed-sim", text: "Paediatric Simulation Training" },
+    { value: "ethics-eol", text: "Clinical Ethics & End of Life Care" },
+    { value: "coroners-inquest", text: "Coroner’s Inquest Training" },
+    { value: "human-factors", text: "Human Factors Training" },
+    { value: "periop-medicine", text: "Courses in Peri-operative Medicine" },
+    { value: "cpet", text: "Cardiopulmonary Exercise Testing (CPET) Events" }
+  ]
+}) }}
+</div>
+
+
+<div id="event-title-exam" class="inputmaxwidth hidden">
+{{ select({
+  id: "select-exam",
+  name: "selectExam",
+  label: {
+    text: "Exam name",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+   { value: "select", text: "Select" }, 
+    { value: "fficm-exam", text: "FFICM Examination" },
+    { value: "fficm-osce", text: "FFICM OSCE" },
+    { value: "fficm-soe", text: "FFICM SOE" },
+    { value: "frca-primary", text: "FRCA Primary Examination" },
+    { value: "frca-primary-mcq", text: "FRCA Primary MCQ" },
+    { value: "frca-primary-osce", text: "FRCA Primary OSCE" },
+    { value: "frca-primary-soe", text: "FRCA Primary SOE" },
+    { value: "frca-final", text: "FRCA Final Examination" },
+    { value: "frca-final-written", text: "FRCA Final Written" },
+    { value: "frca-final-soe", text: "FRCA Final SOE" },
+    { value: "generic-instructor", text: "Generic Instructor Course (ALS/ATLS/APLS)" },
+    { value: "consultant-interview", text: "Consultant Interview Preparation (ICM/Anaesthesia)" },
+    { value: "return-to-training", text: "Return to Training (SRTT) Exam-related Courses" },
+    { value: "critical-appraisal", text: "Critical Appraisal Training (National Courses and Events)" },
+    { value: "exam-prep", text: "Exam Preparation Courses relevant to level of training (FRCA/FFICM)" },
+    { value: "frca-reveal", text: "FRCA Reveal Subscription" }
+  ]
+}) }}
+</div>
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  name: "course-event-provider",
+  id: "course-event-provider",
+  label: {
+    text: "Course or event provider",
+    classes: "nhsuk-label--s",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Enter the name of the organisation running the course or event. This could be your trust or a private company "
+  }
+}) }}
+</div>
+
+
+<div class="inputmaxwidth">
+{% from 'textarea/macro.njk' import textarea %}
+
+{{ textarea({
+  name: "supporting information",
+  id: "supporting-information",
+  label: {
+    text: "Supporting information (optional)",
+    classes: "nhsuk-label--s",
+      isPageHeading: false
+  },
+  hint: {
+    text: "Provide any information that could help support your application"
+  }
+}) }}
+</div>
+
+
+
+  </div>
+ 
+</div>
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "apply-date"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+<script>
+  (function(){
+    var typeSelect = document.getElementById('type-of-study');
+    var activitySelect = document.getElementById('study-activity');
+
+    var generic = document.getElementById('event-title-generic');
+    var revision = document.getElementById('event-title-revision');
+    var conference = document.getElementById('event-title-conference');
+    var course = document.getElementById('event-title-course');
+    var exam = document.getElementById('event-title-exam');
+
+    function updateVisibility(){
+      var type = typeSelect && typeSelect.value;
+      var activity = activitySelect && activitySelect.value;
+
+      
+      generic.classList.remove('hidden');
+      revision.classList.add('hidden');
+      conference.classList.add('hidden');
+      course.classList.add('hidden');
+      exam.classList.add('hidden');
+
+      if(type === 'pre-approved'){
+        
+        if(activity === 'revision'){
+          generic.classList.add('hidden');
+          revision.classList.remove('hidden');
+        } else if(activity === 'conference'){
+          generic.classList.add('hidden');
+          conference.classList.remove('hidden');
+        } else if(activity === 'course'){
+          generic.classList.add('hidden');
+          course.classList.remove('hidden');
+        } else if(activity === 'exam'){
+          generic.classList.add('hidden');
+          exam.classList.remove('hidden');
+        }
+      } else {
+       
+      }
+    }
+
+    if(typeSelect) typeSelect.addEventListener('change', updateVisibility);
+    if(activitySelect) activitySelect.addEventListener('change', updateVisibility);
+
+    
+    document.addEventListener('DOMContentLoaded', updateVisibility);
+    
+    updateVisibility();
+  })();
+</script>
+
+
+ {% endblock %}

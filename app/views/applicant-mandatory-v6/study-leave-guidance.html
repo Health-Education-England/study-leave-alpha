@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Study leave guidance - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  .hidden {display: none;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+  
+
+
+{% from "button/macro.njk" import button %}
+{% from 'inset-text/macro.njk' import insetText %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+{% set dummyNhsNumber = "999 123 4567" %}
+
+
+
+
+
+
+      <h1 class="nhsuk-heading-l">Study leave guidance</h1>
+      <p class="nhsuk-hint">Here are the steps for submitting an application and the information you’ll need</p>
+      
+
+      {% from "task-list/macro.njk" import taskList %}
+
+{{ taskList({
+  idPrefix: "your-health",
+  items: [
+    {
+      title: {
+        text: "Create application",
+     classes: "nhsuk-heading-s"
+      },
+      
+      hint: {
+        html: '<b>You will need:</b><ul><li>Details about the course or event</li><li>Agreement from your educational supervisor</li><li>Time away from normal work activities agreed with your team and/or rota coordinator</li> <li>Estimated costs for the course, travel and accommodation</li></ul>'
+
+      }
+    },
+    {
+      title: {
+        text: "Get approval",
+     classes: "nhsuk-heading-s"
+      },
+      hint: {
+        html: '<p>If your course is not pre-approved, it will need a human to review it. This normally happens in 3 working days.</p><ul><li> <strong class="nhsuk-tag nhsuk-tag--green">
+  Approved</strong> explanation of status</li><li> <strong class="nhsuk-tag nhsuk-tag--red">
+  Rejected</strong> explanation of status</li></ul>'
+
+      },
+      
+      status: {
+        
+      }
+    },
+    {
+      title: {
+        text: "Request expenses",
+     classes: "nhsuk-heading-s"
+      },
+      hint: {
+        text: "Before the event, you may request expenses for any fees, travel etc...."
+      },
+     
+      status: {
+        
+      }
+    },
+    {
+      title: {
+        text: "Attend study leave event",
+     classes: "nhsuk-heading-s"
+      },
+      
+      hint: {
+        text: "Some ytext about attending the event"
+      },
+      status: {
+       
+      }
+    },
+    {
+      title: {
+        text: "Request additional expenses",
+     classes: "nhsuk-heading-s"
+      },
+      hint: {
+        text: "After the event, you may request expenses for any fees, travel etc...."
+      },
+      status: {
+       
+      
+      }
+    }
+  ]
+}) }}
+     
+    </div>
+  </div>
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Apply for a study leave",
+    classes: "nhsuk-button--green",
+    href: "before-you-start"  
+  }) }}
+
+ 
+</div>
+
+
+
+
+
+
+
+
+ {% endblock %}

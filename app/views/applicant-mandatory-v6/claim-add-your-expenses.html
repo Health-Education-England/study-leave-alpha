@@ -1,0 +1,401 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+ Study leave application expenses - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .nhsuk-summary-list{margin-bottom: 10px !important;}
+  /* Optional tiny visual tweak so the inline review hint stands out a little */
+  .actual-review-hint {
+    margin-top: 8px;
+  }
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Claim expenses</span>
+   <h1 class="nhsuk-heading-l">Application expenses for Advanced Trauma Life Support (ATLS)</h1>
+   
+     <p class="nhsuk-hint">These are the approved expenses for this application. You can add any other expenses incurred or update those previously added with the actual costs incurred</p>
+ 
+
+<div style="background-color: white; padding: 20px;margin-bottom: 20px;">
+   <h2 class="nhsuk-heading-s">Course</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Expense type"
+      },
+      value: {
+        text: "Course fee"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Estimated cost"
+      },
+      value: {
+        text: "999"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+    
+  ]
+}) }}
+
+<div class="nhsuk-form-group">
+  <label class="nhsuk-label nhsuk-label--s" for="actual-course">
+    Actual cost
+  </label>
+  <!-- per-input inline message will appear below when actual > estimate -->
+  <div class="nhsuk-input__wrapper">
+    <div class="nhsuk-input__prefix" aria-hidden="true">£</div>
+    <input class="nhsuk-input nhsuk-input--width-5"
+           id="actual-course"
+           name="actual-course"
+           type="text"
+           value="999"
+           inputmode="decimal"
+           data-estimate="999"
+           aria-describedby="actual-course-message">
+  </div>
+
+  <div id="actual-course-message"
+       class="nhsuk-hint actual-review-hint"
+       role="status"
+       aria-live="polite"
+       hidden>
+    <!-- populated by JS when needed -->
+  </div>
+</div>
+
+  <div class="nhsuk-form-group">
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-course">
+      Upload a receipt
+      </label>
+      <div class="nhsuk-hint" id="course-upload-hint">
+        Upload each file in PDF, JPG, or PNG format. Maximum file size 5MB  
+      </div>
+      <input class="nhs-file-upload" id="file-upload-course" name="fileUploadCourse" type="file">
+    </div>
+
+
+</div>
+
+
+
+
+
+<div style="background-color: white; padding: 20px;margin-bottom: 20px;">
+<h2 class="nhsuk-heading-s">Travel</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Travel type"
+      },
+      value: {
+        text: "Train"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Estimated cost"
+      },
+      value: {
+        text: "93"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+<div class="nhsuk-form-group">
+  <label class="nhsuk-label nhsuk-label--s" for="actual-travel">
+    Actual cost
+  </label>
+
+  <div class="nhsuk-input__wrapper">
+    <div class="nhsuk-input__prefix" aria-hidden="true">£</div>
+    <input class="nhsuk-input nhsuk-input--width-5"
+           id="actual-travel"
+           name="actual-travel"
+           type="text"
+           value="93"
+           inputmode="decimal"
+           data-estimate="93"
+           aria-describedby="actual-travel-message">
+  </div>
+
+  <div id="actual-travel-message"
+       class="nhsuk-hint actual-review-hint"
+       role="status"
+       aria-live="polite"
+       hidden>
+  </div>
+</div>
+
+  <div class="nhsuk-form-group">
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-travel">
+     Upload a receipt
+      </label>
+      <div class="nhsuk-hint" id="travel-upload-hint">
+       Upload each file in PDF, JPG, or PNG format. Maximum file size 5MB
+      </div>
+      <input class="nhs-file-upload" id="file-upload-travel" name="fileUploadTravel" type="file">
+    </div>
+</div>
+
+
+
+
+
+<div style="background-color: white; padding: 20px;margin-bottom: 20px;">
+<h2 class="nhsuk-heading-s">Accommodation</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Number of nights"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Estimated cost"
+      },
+      value: {
+        text: "313"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+<div class="nhsuk-form-group">
+  <label class="nhsuk-label nhsuk-label--s" for="actual-accommodation">
+    Actual cost
+  </label>
+
+  <div class="nhsuk-input__wrapper">
+    <div class="nhsuk-input__prefix" aria-hidden="true">£</div>
+    <input class="nhsuk-input nhsuk-input--width-5"
+           id="actual-accommodation"
+           name="actual-accommodation"
+           type="text"
+           value="313"
+           inputmode="decimal"
+           data-estimate="313"
+           aria-describedby="actual-accommodation-message">
+  </div>
+
+  <div id="actual-accommodation-message"
+       class="nhsuk-hint actual-review-hint"
+       role="status"
+       aria-live="polite"
+       hidden>
+  </div>
+</div>
+
+  <div class="nhsuk-form-group">
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-accommodation">
+     Upload a receipt
+      </label>
+      <div class="nhsuk-hint" id="accommodation-upload-hint">
+       Upload each file in PDF, JPG, or PNG format. Maximum file size 5MB
+      </div>
+      <input class="nhs-file-upload" id="file-upload-accommodation" name="fileUploadAccommodation" type="file">
+    </div>
+</div>
+
+
+ <a class="nhsuk-body-m" href="">Add another expense</a>
+   
+ 
+
+<div class="">
+    {{ textarea({
+      name: "supportingInfo",
+      id: "supportingInfo",
+      label: {
+        text: "Supporting information (optional)",
+        classes: "nhsuk-label--s"
+      },
+      hint: {
+        text: "Provide any information that could help support your expenses claim"
+      }
+    }) }}
+
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "bank-details-additional"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard-applied" 
+  }) }}
+</div>
+
+
+<script>
+(function () {
+ 
+  const WARNING_TEXT = "";
+
+
+  function parseAmount(value) {
+    if (typeof value !== 'string') return NaN;
+  
+    const cleaned = value.replace(/[^\d.\-]/g, '');
+   
+    const parts = cleaned.split('.');
+    const normalized = parts.length > 2 ? parts.shift() + '.' + parts.join('') : cleaned;
+    return parseFloat(normalized);
+  }
+
+  
+  const inputs = Array.from(document.querySelectorAll('input[data-estimate]'));
+
+  if (!inputs.length) return;
+
+  inputs.forEach(function (input) {
+    const estimateRaw = input.getAttribute('data-estimate') || '';
+    const estimate = parseAmount(String(estimateRaw));
+
+
+    if (isNaN(estimate)) return;
+
+   
+    const msgId = input.getAttribute('aria-describedby');
+    let messageEl = msgId ? document.getElementById(msgId) : null;
+
+  
+    if (!messageEl) {
+      messageEl = document.createElement('div');
+      messageEl.className = 'nhsuk-hint actual-review-hint';
+      messageEl.setAttribute('role', 'status');
+      messageEl.setAttribute('aria-live', 'polite');
+      input.insertAdjacentElement('afterend', messageEl);
+    }
+
+ 
+    function checkAndToggle() {
+      const val = parseAmount(input.value || '');
+      if (!isNaN(val) && val > estimate) {
+        messageEl.textContent = WARNING_TEXT;
+        messageEl.hidden = false;
+      } else {
+        messageEl.textContent = '';
+        messageEl.hidden = true;
+      }
+    }
+
+   
+    input.addEventListener('input', checkAndToggle);
+    input.addEventListener('change', checkAndToggle);
+
+    
+    checkAndToggle();
+  });
+})();
+</script>
+
+ {% endblock %}

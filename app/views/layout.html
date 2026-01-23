@@ -26,25 +26,34 @@
 <!-- Edit the footer -->
 <!-- Footer code examples can be found at https://service-manual.nhs.uk/design-system/components/footer -->
 {% block footer %}
+
+
+
+
   {{ footer({
     meta: {
       items: [
+        
         {
-          href: "/",
-          text: "Home"
+          href: "#",
+          text: "Accessibility statement"
         },
         {
-          href: "/example-templates",
-          text: "Page templates"
+          href: "#",
+          text: "Cookies and privacy policy"
         },
         {
-          href: "/prototype-admin/reset?returnPage=" + (currentPage | urlencode),
-          text: "Reset data"
+          href: "#",
+          text: "Terms and conditions"
         }
       ]
     }
   }) }}
 {% endblock %}
+
+
+
+
 
 {% block bodyEnd %}
   <script src="/nhsuk-frontend/nhsuk-frontend.min.js" type="module"></script>

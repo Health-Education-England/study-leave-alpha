@@ -1,0 +1,187 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Manage pre-approved courses</h1>
+       
+<div style="" id="contact-hint" class="nhsuk-hint">
+     Update existing course information or add a new
+course
+    </div>
+  </div>
+
+
+    <div class="nhsuk-grid-column-one-third">
+    {% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Add new course",
+  href: "add-course",
+  classes: "nhsuk-u-float-right"
+
+}) }}
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+
+
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search courses
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-applications"
+          />
+       
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="status-select">Filter courses</label>
+          <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+            <option value="all" selected>All</option>
+            <option value="pending">Filter 1</option>
+            <option value="approved">Filter 2</option>
+            <option value="rejected">Filter 3</option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+
+  <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+<!--Space for show items if required from the team -->
+  </div>
+</div>
+
+
+
+
+
+{{ table({
+  responsive: false,
+  panel: true,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Course/event name" },
+    { text: "Duration", format: "text" },
+    { text: "Location", format: "text" },
+    
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: '<a href="course-details">Paediatric Simulation Training</a>' },
+   { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+      
+      { html: '<a href="#">Edit</a>' }
+    ],
+    [
+     { html: '<a href="#">Clinical Ethics & End of Life Care</a>' },
+     { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+    
+      { html: '<a href="#">Edit</a>' }
+    ],
+    [
+    { html: '<a href="#">Coroner’s Inquest Training</a>' },
+     { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+   
+      { html: '<a href="#">Edit</a>' }
+    ],
+    [
+   { html: '<a href="#">Human Factors Training</a>'},
+  { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+ 
+       { html: '<a href="#">Edit</a>' }
+    ],
+    [
+   { html: '<a href="#">Courses in Peri-operative Medicine</a>'},
+  { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+ 
+       { html: '<a href="#">Edit</a>' }
+    ],
+    [
+   { html: '<a href="#">Cardiopulmonary Exercise Testing (CPET) Events</a>'},
+  { html: '2 days', format: "text" },
+      { text: "Online", format: "text" },
+ 
+       { html: '<a href="#">Edit</a>' }
+    ]
+  ]
+}) }}
+
+</div>
+
+
+
+
+ {% endblock %}

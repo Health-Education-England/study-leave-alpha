@@ -1,0 +1,310 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {
+    border-radius: 0 !important;
+  }
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+  href: "javascript:window.history.back()",
+  text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Location and date</h1>
+
+    <div class="nhsuk-progress inputmaxwidth" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4"
+      aria-label="Page 1 of 4">
+      <div class="nhsuk-progress__bar" style="width: calc(2 / 4 * 100%);"></div>
+    </div>
+
+    <p class="nhsuk-body-s nhsuk-u-margin-top-2">
+      Page 2 of 4
+    </p>
+
+    <style>
+      .nhsuk-progress {
+        height: 12px;
+        background: #c3cace;
+        /* NHS Grey 4 */
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .nhsuk-progress__bar {
+        height: 100%;
+        background: #007f3b;
+        /* NHS Green */
+        transition: width 0.3s ease;
+        border-right: 2px solid #ffffff;
+      }
+    </style>
+
+
+    <div class="inputmaxwidth">
+      {{ input({
+      label: {
+      text: "Course/event location",
+      classes: "nhsuk-label--s"
+      },
+      hint: {
+      text: "Provide the town or city where you’ll be attending the course/event "
+      },
+      id: "event-location",
+      name: "eventLocation"
+      }) }}
+    </div>
+
+
+    {% from 'date-input/macro.njk' import dateInput %}
+
+    {{ dateInput({
+    id: "start-date",
+    namePrefix: "start-date",
+    fieldset: {
+    legend: {
+    text: "Start date",
+    classes: "nhsuk-label--s"
+    }
+    },
+    hint: {
+    text: "For example, 15 11 2025"
+    },
+    items: [
+    {
+    name: "day",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "month",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "year",
+    classes: "nhsuk-input--width-4"
+    }
+    ]
+    }) }}
+
+
+
+
+<div class="nhsuk-form-group">
+      <fieldset class="nhsuk-fieldset" role="group" aria-describedby="leave-time-hint">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s">
+          What time will you leave home or work to attend this event?
+        </legend>
+
+        <div id="leave-time-hint" class="nhsuk-hint">
+          For example, 9:30am or 2:55pm
+        </div>
+
+        <div id="leave-time" class="nhsuk-date-input">
+          <div class="nhsuk-date-input__item">
+            <label class="nhsuk-label nhsuk-date-input__label" for="leave-hour">
+              Hour
+            </label>
+            <input
+              class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+              id="leave-hour"
+              name="leaveTime[hour]"
+              type="text"
+              inputmode="numeric"
+              maxlength="2">
+          </div>
+
+          <div class="nhsuk-date-input__item">
+            <label class="nhsuk-label nhsuk-date-input__label" for="leave-minute">
+              Minute
+            </label>
+            <input
+              class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2"
+              id="leave-minute"
+              name="leaveTime[minute]"
+              type="text"
+              inputmode="numeric"
+              maxlength="2">
+          </div>
+
+          <div class="nhsuk-date-input__item">
+            <label class="nhsuk-label nhsuk-date-input__label" for="leave-period">
+              am or pm
+            </label>
+            <select
+              class="nhsuk-select nhsuk-input--width-4"
+              id="leave-period"
+              name="leaveTime[period]" style="min-width: 100px !important;">
+              <option value="" disabled selected hidden>Select</option>
+              <option value="AM">am</option>
+              <option value="PM">pm</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+
+
+    {{ dateInput({
+    id: "end-date",
+    namePrefix: "end date",
+    fieldset: {
+    legend: {
+    text: "End date",
+    classes: "nhsuk-label--s"
+    }
+    },
+    hint: {
+    text: "For example, 17 11 2025"
+    },
+    items: [
+    {
+    name: "day",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "month",
+    classes: "nhsuk-input--width-2"
+    },
+    {
+    name: "year",
+    classes: "nhsuk-input--width-4"
+    }
+    ]
+    }) }}
+
+    {% from 'input/macro.njk' import input %}
+
+
+
+    <div class="nhsuk-form-group">
+      <fieldset class="nhsuk-fieldset" role="group" aria-describedby="">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s">
+
+          What time will you return home or to work after this event?
+        </legend>
+
+        <div id="" class="nhsuk-hint">
+          For example, 9:30am or 2:55pm
+        </div>
+
+        <div id="appointment-time" class="nhsuk-date-input">
+          <div class="nhsuk-date-input__item">
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label nhsuk-date-input__label" for="appointment-hour">
+                Hour
+              </label>
+
+              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="appointment-hour"
+                name="appointmentTime[hour]" type="text" inputmode="numeric" autocomplete="off" maxlength="2"
+                 pattern="[0-9]*">
+
+            </div>
+          </div>
+
+          <div class="nhsuk-date-input__item">
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label nhsuk-date-input__label" for="appointment-minute">
+                Minute
+              </label>
+
+              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="appointment-minute"
+                name="appointmentTime[minute]" type="text" inputmode="numeric" autocomplete="off" maxlength="2"
+                 pattern="[0-9]*">
+
+            </div>
+          </div>
+
+          <div class="nhsuk-date-input__item">
+            <div class="nhsuk-form-group">
+              <label class="nhsuk-label nhsuk-date-input__label" for="appointment-period">
+                am or pm
+              </label>
+              <select class="nhsuk-select nhsuk-input--width-4" id="appointment-period" name="appointmentTime[period]"
+                style="min-width: 100px !important;">
+                <option value="">Select</option>
+                <option value="AM">am</option>
+                <option value="PM">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+
+
+
+    <div class="inputmaxwidth">
+      {{ input({
+      label: {
+      text: "Number of days requested",
+      classes: "nhsuk-label--s"
+      },
+      hint: {
+      text: "This is the number of days you’ll be using from your study leave allocation. Only include the number of
+      days you’ll actually be studying"
+      },
+      id: "event-days",
+      name: "eventDays"
+      }) }}
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+  text: "Save and continue",
+  classes: "nhsuk-button--green",
+  href: "approver-info-discretionary"
+  }) }}
+
+  {{ button({
+  text: "Cancel",
+  classes: "nhsuk-button--secondary",
+  href: "dashboard"
+  }) }}
+</div>
+
+
+
+
+{% endblock %}

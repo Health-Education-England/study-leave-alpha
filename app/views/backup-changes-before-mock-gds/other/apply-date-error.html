@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+
+{% from "button/macro.njk" import button %}
+{% from "input/macro.njk" import input %}
+{% from "date-input/macro.njk" import dateInput %}
+{% from "error-summary/macro.njk" import errorSummary %}
+{% from "back-link/macro.njk" import backLink %}
+
+{% block pageTitle %}
+Location and date – NHS
+{% endblock %}
+
+{% block content %}
+
+<style>
+  select { border-radius: 0 !important; }
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  .nhsuk-progress {
+    height: 12px;
+    background: #c3cace;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .nhsuk-progress__bar {
+    height: 100%;
+    background: #007f3b;
+    border-right: 2px solid #ffffff;
+  }
+</style>
+
+<div class="sl-back">
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Location and date</h1>
+
+    <div class="nhsuk-progress inputmaxwidth" role="progressbar"
+      aria-valuenow="2"
+      aria-valuemin="1"
+      aria-valuemax="4"
+      aria-label="Page 2 of 4">
+      <div class="nhsuk-progress__bar" style="width: calc(2 / 4 * 100%);"></div>
+    </div>
+
+    <span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+      Page 2 of 4
+    </span>
+
+    {{ errorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        { text: "Enter a course or event location", href: "#event-location" },
+        { text: "Date must be in the future", href: "#start-date-day" },
+        { text: "Date must include a day", href: "#start-date-day" },
+        { text: "Date must include a month", href: "#start-date-month" },
+        { text: "Date must include a year", href: "#start-date-year" },
+        { text: "Start date must be before the end date", href: "#start-date-day" },
+        { text: "End date must be after start date", href: "#end-date-day" }
+      ]
+    }) }}
+
+    <!-- Course location -->
+    <div class="inputmaxwidth nhsuk-form-group nhsuk-form-group--error">
+      {{ input({
+        label: {
+          text: "Course/event location",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Provide the town or city where you’ll be attending the course/event"
+        },
+        id: "event-location",
+        name: "eventLocation",
+        errorMessage: {
+          text: "Enter a course or event location"
+        }
+      }) }}
+    </div>
+
+    <!-- Start date -->
+    <div class="nhsuk-form-group nhsuk-form-group--error">
+      {{ dateInput({
+        id: "start-date",
+        namePrefix: "start-date",
+        fieldset: {
+          legend: {
+            text: "Start date",
+            classes: "nhsuk-label--s"
+          }
+        },
+        hint: {
+          text: "For example, 15 11 2025"
+        },
+        errorMessage: {
+          text: "Date must include a day, month and year"
+        },
+        items: [
+          { name: "day", classes: "nhsuk-input--width-2" },
+          { name: "month", classes: "nhsuk-input--width-2" },
+          { name: "year", classes: "nhsuk-input--width-4" }
+        ]
+      }) }}
+    </div>
+
+    <!-- End date -->
+    <div class="nhsuk-form-group nhsuk-form-group--error">
+      {{ dateInput({
+        id: "end-date",
+        namePrefix: "end-date",
+        fieldset: {
+          legend: {
+            text: "End date",
+            classes: "nhsuk-label--s"
+          }
+        },
+        hint: {
+          text: "For example, 17 11 2025"
+        },
+        errorMessage: {
+          text: "End date must be after start date"
+        },
+        items: [
+          { name: "day", classes: "nhsuk-input--width-2" },
+          { name: "month", classes: "nhsuk-input--width-2" },
+          { name: "year", classes: "nhsuk-input--width-4" }
+        ]
+      }) }}
+    </div>
+
+    <!-- Number of days -->
+    <div class="inputmaxwidth">
+      {{ input({
+        label: {
+          text: "Number of days requested",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Only include the number of days you’ll actually be studying"
+        },
+        id: "event-days",
+        name: "eventDays"
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "apply-expense"
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard"
+  }) }}
+</div>
+
+{% endblock %}

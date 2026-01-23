@@ -1,0 +1,241 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future tudy leave serviSce - NHS England
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 style="margin-bottom: 0px;" class="nhsuk-heading-l">Your Study leave dashboard</h1>
+   <p style="margin-top: 0px;">Book courses and keep track of your study leave applications and expenses claims.</p>
+       <p>Budget period: <b>01 April 2025 </b>to <b>31 March 2026</b></p>
+<div style="display: none;" id="contact-hint" class="nhsuk-hint">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu, nisi consectetur risus sit sit sit pretium.
+    </div>
+  </div>
+  <div class="nhsuk-grid-column-one-third" style="display: none;">
+    {% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Apply for Study leave",
+  href: "apply",
+  classes: "nhsuk-u-float-right"
+
+}) }}
+  </div>
+</div>
+
+
+
+
+
+    {% from 'card/macro.njk' import card %}
+
+<ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">3<span class=\"nhsuk-u-visually-hidden\">Applications submitted</span></p><span class=\"nhsuk-u-font-size-16\">Applications submitted</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">1<span class=\"nhsuk-u-visually-hidden\">Applications approved</span></p><span class=\"nhsuk-u-font-size-16\">Applications approved</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">£470<span class=\"nhsuk-u-visually-hidden\">Expense requested</span></p><span class=\"nhsuk-u-font-size-16\">Expense <br>requested</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">£120 <span class=\"nhsuk-u-visually-hidden\">Expense approved</span></p><span class=\"nhsuk-u-font-size-16\">Expense <br>approved</span>"
+    }) }}
+  </li>
+
+<li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">£0 <span class=\"nhsuk-u-visually-hidden\">Expense paid</span></p><span class=\"nhsuk-u-font-size-16\">Expense <br>paid</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">12 <span class=\"nhsuk-u-visually-hidden\">Days left to submit expense claim</span></p><span class=\"nhsuk-u-font-size-16\">Days left to submit expense claim</span>"
+    }) }}
+  </li>
+
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">5 <span class=\"nhsuk-u-visually-hidden\">Days taken</span></p><span class=\"nhsuk-u-font-size-16\">Days <br>taken</span>"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-quarter nhsuk-card-group__item">
+    {{ card({
+      clickable: "true",
+      headingHtml: "<p class=\"nhsuk-heading-l nhsuk-u-font-size-48 nhsuk-u-margin-bottom-1\">24 <span class=\"nhsuk-u-visually-hidden\">Days remaining</span></p><span class=\"nhsuk-u-font-size-16\">Days <br>remaining</span>"
+    }) }}
+  </li>
+  
+
+   <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+  <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        
+        <p>Book training courses, manage study leave applications and claim expenses.</p>
+        {{ actionLink({
+  text: "Apply for study leave",
+  href: "apply"
+}) }}
+      </div>
+    </div>
+  </li>
+
+
+
+
+
+
+
+
+  
+</ul>
+
+
+
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+<h2 class="nhsuk-heading-m">Your study leave applications</h2>
+
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search applications
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-hint"
+          />
+       
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="status-select">Filter by status</label>
+          <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+            <option value="all" selected>All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+
+  <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+<!--Space for show items if required from the team -->
+  </div>
+</div>
+
+
+
+
+{{ table({
+  responsive: true,
+  panel: true,
+  firstCellIsHeader: true,
+  head: [
+    { text: "Course/event" },
+    { text: "Duration", format: "text" },
+   
+    { text: "Expense", format: "numeric" },
+    { text: "Status", format: "text" },
+    { text: "Expense claim", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: '<a href="summary">Example title 1</a>' },
+   { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+     
+      { text: "£0", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--grey">In draft</strong>' },
+       { html: '<a href="#" class=""></a>' }
+    ],
+    [
+     { html: '<a href="rejected">Example title 2</a>' },
+     { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+     
+      { text: "£600", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' },
+      { html: '<a href="#" class=""></a>' }
+    ],
+    [
+    { html: '<a href="view-details">Example title 3</a>' },
+     { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+   
+      { text: "£320", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--yellow">Pending</strong>' },
+      { html: '<a href="#" class=""></a>' }
+    ],
+    [
+   { html: '<a href="claim-summary">Example title 4</a>'},
+  { html: '2 days<br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color">3 Apr 2025 to 5 Apr 2025</span>', format: "text" },
+      
+      { text: "£450", format: "numeric" },
+       { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+       { html: '<a href="claim-summary" class="">Claim expense</a>' }
+        
+    ]
+  ]
+}) }}
+
+</div>
+
+
+
+
+ {% endblock %}
