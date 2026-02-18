@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+ Evidence of approval - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Approver details</h1>
+
+<div class="nhsuk-progress inputmaxwidth" role="progressbar"
+     aria-valuenow="1"
+     aria-valuemin="1"
+     aria-valuemax="4"
+     aria-label="Page 3 of 4">
+  <div class="nhsuk-progress__bar" style="width: calc(3 / 4 * 100%);"></div>
+</div>
+
+<span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+  Page 3 of 4
+</span>
+
+<style>
+ .nhsuk-progress {
+  height: 12px;
+  background: #c3cace; /* NHS Grey 4 */
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.nhsuk-progress__bar {
+  height: 100%;
+  background: #007f3b; /* NHS Green */
+  transition: width 0.3s ease;
+  border-right:2px solid #ffffff;
+}
+
+</style>
+
+   <p class="nhsuk-hint">Provide the details of the person who'll approved your study leave request.</p>
+
+
+   <details class="nhsuk-details">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+    Who should approve my application?
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+<p>    
+<strong>For mandatory training</strong><br>
+This will be your Educational Supervisor, you're not required to provide any evidence for mandatory training.
+</p>
+
+
+<p>    
+<strong>For discretionary training</strong><br>
+This will be your Training Programme Director.
+</p>
+
+<p>    
+<strong>For international training</strong><br>
+This will be your Head of School.
+</p>
+    
+
+  </div>
+</details>
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "First name",
+    classes: "nhsuk-label--s"
+  },
+ 
+  id: "first-name",
+  name: "first-name"
+}) }}
+
+
+ {{ input({
+  label: {
+    text: "Last name",
+    classes: "nhsuk-label--s"
+  },
+  
+  id: "last-name",
+  name: "last-name"
+}) }}
+
+</div>
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Job role",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    { value: "Select", text: "Select" },
+    { value: "educational-supervisor", text: "Educational Supervisor" },
+    { value: "clinical-supervisor", text: "Clinical Supervisor" },
+    { value: "tpd-anaesthetics", text: "Training Programme Director" },
+    { value: "head-of-school-anaesthesia-icm", text: "Head of School" }
+  ]
+}) }}
+
+
+<!--<div class="nhsuk-grid-row" style="margin-bottom: 30px;">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div>
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-course">
+       Upload evidence (optional)
+      </label>
+      <div class="nhsuk-hint" id="course-upload-hint">
+        Upload evidence of approval. <br>Upload each file in PDF, JPG, or PNG format. Maximum file size 5MB
+      </div>
+      <input class="nhs-file-upload" id="file-upload-course" name="fileUploadCourse" type="file">
+    </div>
+  </div>
+</div> -->
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Do you want to save this information?",
+      classes: "nhsuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "Save for future study leave applications ",
+      text: "Save for future study leave applications "
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "apply-expense"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+
+
+ {% endblock %}

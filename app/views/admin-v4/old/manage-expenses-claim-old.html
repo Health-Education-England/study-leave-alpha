@@ -1,0 +1,752 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .expense-added th, td{font-size: 17px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Approve claim</span>
+   <h1 class="nhsuk-heading-l">Review claim</h1>
+<span class="nhsuk-hint">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
+
+    
+<div style="background-color: rgb(255, 255, 255);padding: 15px 15px 0px 15px;">
+
+
+   {% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+  {
+      key: {
+        text: "Claim amount"
+      },
+      value: {
+        text: "£1505"
+      }
+    
+    },
+    {
+      key: {
+        text: "Initial estimate"
+      },
+      value: {
+        text: "£1405  "
+      }
+    },
+    {
+      key: {
+        text: "Difference in amount"
+      },
+      value: {
+      html: '£100   <span class="nhsuk-tag nhsuk-tag--red">Higher than expected</span>'
+      }
+    
+    }
+  ]
+}) }}
+
+</div>
+
+
+
+   <details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+    View application summary
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+
+ 
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Course/event details </h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Study type "
+      },
+      value: {
+         text: "Pre-approved"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+         text: "Course"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Course/event name "
+      },
+      value: {
+         text: "Advanced Trauma Life Support (ATLS)"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "RCS (Royal College of Surgeons)"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information"
+      },
+      value: {
+         text: "N/A"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+    
+  ]
+}) }}
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Location and date</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "3 Feb 2026"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "4 Feb 2026"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "London"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Estimated expenses</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "",
+            visuallyHiddenText: "Application details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Total estimated expenses"
+      },
+      value: {
+         text: "£1405"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "£460"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Applicant information</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "approver-info",
+            text: "",
+            visuallyHiddenText: "approver details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        text: "James"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Smith"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Hospital / Trust"
+      },
+      value: {
+        text: "Leeds Teaching Hospitals NHS Trust"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Job role"
+      },
+      value: {
+        text: "Resident doctor"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+         text: "james.smith@nhs.net"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Declaration"
+      },
+      value: {
+         text: "Accepted"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+    
+  </div>
+</details>
+
+
+
+
+   
+   
+   <h2 class="nhsuk-heading-s">Course</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Expense type"
+      },
+      value: {
+        text: "Course fee"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    },
+   
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£999"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Receipt uploaded"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf</a> (open in a new tab)'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+   
+   <h2 class="nhsuk-heading-s">Travel</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Travel type"
+      },
+      value: {
+        text: "Train"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    },
+    
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+       html: '£193   <span class="nhsuk-tag nhsuk-tag--red">Higher than expected</span>'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Receipt uploaded"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf</a> (open in a new tab)'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+   <h2 class="nhsuk-heading-s">Accommodation</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Number of nights"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    },
+     
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£313"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Receipt uploaded"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf</a> (open in a new tab)'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+   <h2 class="nhsuk-heading-s">Additional information added by applicant</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Comments"
+      },
+      value: {
+        text: "Train ticket ended up costing £100 more than my original estimate."
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: ""
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+<div class="nhsuk-button-group">
+
+   {{ button({
+    text: "Approve",
+    classes: "nhsuk-button",
+href: "claim-success"  
+    
+
+  }) }}
+  
+  {{ button({
+    text: "Reject",
+    classes: "nhsuk-button--warning",
+    href: "reject-claim"  
+  }) }}
+
+ 
+</div>
+
+
+
+
+
+
+
+ {% endblock %}

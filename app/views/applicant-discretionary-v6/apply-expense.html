@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Will you incur any expenses? - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Have you incurred any expenses?</h1>
+    <div class="nhsuk-progress inputmaxwidth" role="progressbar"
+     aria-valuenow="1"
+     aria-valuemin="1"
+     aria-valuemax="4"
+     aria-label="Page 4 of 4">
+  <div class="nhsuk-progress__bar" style="width: calc(4 / 4 * 100%);"></div>
+</div>
+
+<span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+  Page 4 of 4
+</span>
+
+<style>
+ .nhsuk-progress {
+  height: 12px;
+  background: #c3cace; /* NHS Grey 4 */
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.nhsuk-progress__bar {
+  height: 100%;
+  background: #007f3b; /* NHS Green */
+  transition: width 0.3s ease;
+  border-right:2px solid #ffffff;
+}
+
+</style>
+    <p class="nhsuk-hint">As part of your application, you need to provide information about any expenses you've already incurred.</p>
+   
+ <details class="nhsuk-details">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+   What can I claim expenses for? 
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+<p>You can request reimbursement for:</p>
+<ul>
+  <li>travel costs to get to a study leave event</li>
+  <li>course fees to attend the event</li>
+  <li>accommodation costs if the event requires an overnight stay, up to £120 per night (or £150 in London)</li>
+</ul>
+<p>
+You'll automatically be issued a daily amount for subsistence depending on the duration of the study leave event. </p>
+    
+
+  </div>
+</details>
+
+
+
+
+
+
+
+
+
+
+{% from 'radios/macro.njk' import radios %}
+
+{{ radios({
+  idPrefix: "example",
+  name: "example",
+ 
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+<div class="nhsuk-button-group">
+ <a id="continue-button" href="#" class="nhsuk-button">Save and continue</a>
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+<script>
+  document.getElementById("continue-button").addEventListener("click", function (e) {
+    const selected = document.querySelector("input[name='example']:checked");
+
+    if (!selected) {
+      e.preventDefault();
+      alert("Please select an option");
+      return;
+    }
+
+    if (selected.value === "yes") {
+      this.href = "add-expense";
+    } else {
+      this.href = "apply-expense-expected";
+    }
+  });
+</script>
+
+
+ {% endblock %}

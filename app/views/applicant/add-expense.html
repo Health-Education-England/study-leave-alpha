@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Add expense details</h1>
+
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Expense type",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Course fee"
+    },
+    {
+      value: 2,
+      text: "Travel",
+      selected: true
+    },
+    {
+      value: 3,
+      text: "Food and accomodation"
+    }
+  ]
+}) }}
+
+
+
+{% from 'input/macro.njk' import input %}
+{{ input({
+  label: {
+    text: "Expense title",
+    classes: "nhsuk-label--s",
+    format: "text"
+  },
+  hint: {
+    text: "For example, 'travel to Leeds'"
+  },
+  id: "example",
+  name: "example",
+  classes: "inputmaxwidth"
+}) }}
+
+
+{{ input({
+  label: {
+    text: "Amount",
+    classes: "nhsuk-label--s",
+    format: "numeric"
+  },
+  hint: {
+    text: "Amount should be in Pounds"
+  },
+  id: "example",
+  name: "example",
+  classes: "inputmaxwidth"
+}) }}
+
+
+
+
+
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-1">
+        Upload a file
+      </label>
+      <div class="nhsuk-hint" id="example-hint">
+        Upload each file in PDF, JPG, or PNG format, with a maximum size of 5 MB per file
+      </div>
+      <input class="nhs-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+    </div>
+
+
+  </div>
+ 
+</div>
+
+
+<p><a>Add another expense</a></p> 
+<a href="expense-added#expenses" class="nhsuk-button">Save and continue</a>
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,192 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select, 
+  .nhsuk-input {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  /* Hide button by default */
+  #add-expense-btn {
+    display: none;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Apply for Study leave</span>
+    <h1 class="nhsuk-heading-l">Course details</h1>
+
+    {% from 'input/macro.njk' import input %}
+    {% from 'textarea/macro.njk' import textarea %}
+    {% from 'checkboxes/macro.njk' import checkboxes %}
+    {% from 'details/macro.njk' import details %}
+    {% from 'button/macro.njk' import button %}
+
+
+
+    {{ input({
+  label: {
+    text: "Event or course name",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, 'Advanced Life Support training' or 'Cardiology conference'"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+
+
+
+
+    {{ input({
+  label: {
+    text: "Location of the Study leave activity",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, 'Leeds, Glasgow' etc"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+    <div class="nhsuk-form-group">
+      <label class="nhsuk-label nhsuk-label--s" for="file-upload-1">
+        Upload a file (optional)
+      </label>
+      <div class="nhsuk-hint" id="example-hint">
+        Upload each file in PDF, JPG, or PNG format, with a maximum size of 5 MB per file
+      </div>
+      <input class="nhs-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+    </div>
+<div class="inputmaxwidth">
+    {{ textarea({
+      name: "supportingInfo",
+      id: "supportingInfo",
+      label: {
+        text: "Supporting information if any",
+        classes: "nhsuk-label--s"
+      },
+      hint: {
+        text: "For example, some example texts here"
+      }
+    }) }}
+
+</div>
+
+    {{ checkboxes({
+      idPrefix: "expenses",
+      name: "expense-claim",
+      fieldset: {
+        legend: {
+          text: "Do you want the expenses to be claimed back",
+          classes: "nhsuk-fieldset__legend--s"
+        }
+      },
+      hint: {
+        text: "If you need to claim expenses, select this option."
+      },
+      items: [
+        {
+          value: "expense",
+          text: "I want to claim back the expenses",
+          id: "expense-checkbox"
+        }
+      ]
+    }) }}
+
+    <!-- Hidden button that appears when checkbox is ticked -->
+    <div id="add-expense-btn">
+      {{ button({
+        text: "Add expense",
+        href: "/add-expense",
+        classes: "nhsuk-button--secondary-solid"
+      }) }}
+    </div>
+
+    {% call details({
+      summaryText: "Expense claim details"
+    }) %}
+      <p>Some information</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <ul>
+        <li>Excepteur sint occaecat cupidatat</li>
+        <li>Sed ut perspiciatis unde omnis iste natus</li>
+        <li>Voluptatem accusantium doloremque laudantium</li>
+      </ul>
+      <p>Some more text here about policy.</p>
+    {% endcall %}
+  </div>
+</div>
+
+<a href="add-expense" class="nhsuk-button">Save and continue</a>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const addExpenseBtn = document.getElementById('add-expense-btn');
+  if (!addExpenseBtn) {
+    console.warn('Add expense button container (#add-expense-btn) not found.');
+    return;
+  }
+
+  // Try a few ways to locate the checkbox created by the macro
+  let checkbox = document.querySelector('input[type="checkbox"][value="expense"]') ||
+                 document.querySelector('#expenses-expense') ||
+                 document.querySelector('#expense-checkbox') ||
+                 document.querySelector('input[type="checkbox"]');
+
+  if (!checkbox) {
+    // Helpful debug output in the console so you can see what's on the page
+    console.warn('Expense checkbox not found. Listing all checkboxes for debugging:');
+    document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+      console.warn(i, {
+        id: cb.id,
+        name: cb.name,
+        value: cb.value,
+        outerHTML: cb.outerHTML
+      });
+    });
+    return;
+  }
+
+  // Ensure initial visibility matches state (in case it was pre-checked)
+  addExpenseBtn.style.display = checkbox.checked ? 'block' : 'none';
+
+  // Toggle on change
+  checkbox.addEventListener('change', function () {
+    addExpenseBtn.style.display = this.checked ? 'block' : 'none';
+  });
+});
+</script>
+
+
+{% endblock %}

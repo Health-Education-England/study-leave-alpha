@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Study leave title</h1>
+    <h2 class="nhsuk-heading-s">Date details</h2>
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Applied by"
+      },
+      value: {
+        text: "Name of the applicant"
+      }
+    },
+     {
+      key: {
+        text: "Role"
+      },
+      value: {
+        text: "Resident doctor"
+      }
+    },
+     {
+      key: {
+        text: "Hospital / Trust"
+      },
+      value: {
+        text: "Leeds Teaching Hospitals NHS Trust"
+      }
+    },
+
+
+     {
+      key: {
+        text: "Study leave type"
+      },
+      value: {
+        text: "Discretionary"
+      }
+    },
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "15 March 1984"
+      }
+    }, 
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "15 March 1984"
+      }
+    },
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+         text: "15"
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+ <h2 class="nhsuk-heading-s">Course details</h2>
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Event or course name"
+      },
+      value: {
+        text: "Example course"
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+        text: "Example location"
+      }
+      
+    }, 
+    {
+      key: {
+        text: "Supporting file"
+      },
+      value: {
+        text: "Not uploaded"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information"
+      },
+      value: {
+         text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    },
+    {
+      key: {
+        text: "Total amount"
+      },
+      value: {
+         text: "£126"
+      }
+    },
+    {
+      key: {
+        text: "Declaration signed"
+      },
+      value: {
+         text: "Yes"
+      }
+    }
+  ]
+}) }}
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+{% from 'button/macro.njk' import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Approve",
+    classes: "nhsuk-button"
+  }) }}
+
+  {{ button({
+    text: "Reject with reason",
+    classes: "nhsuk-button--secondary",
+      href: "reject"  
+  }) }}
+</div>
+
+
+
+
+ {% endblock %}

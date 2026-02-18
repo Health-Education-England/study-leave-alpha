@@ -1,0 +1,376 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+<div class="nhsuk-notification-banner nhsuk-notification-banner--alert" role="alert" aria-labelledby="nhsuk-notification-banner-title" data-module="nhsuk-notification-banner">
+  <div class="nhsuk-notification-banner__header">
+    <h2 class="nhsuk-notification-banner__title" id="nhsuk-notification-banner-title">
+      Request rejected
+    </h2>
+  </div>
+  <div class="nhsuk-notification-banner__content">
+    <h3 class="nhsuk-notification-banner__heading">
+     Your Study leave request is rejected
+    </h3>
+    <strong>Comment from the admin</strong>
+    <p>"The reason for rejection are Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"</p>
+    <a href="Apply">Start new application</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+    <h2 class="nhsuk-heading-s">Course/event details</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Study type "
+      },
+      value: {
+        text: "Discretionary"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+        text: "Study"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Course/event name "
+      },
+      value: {
+        text: "Event or course name 1"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "Provider 1"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information "
+      },
+      value: {
+         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+    <h2 class="nhsuk-heading-s">Location and date </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "15 March 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "17 March 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "Leeds"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+    <h2 class="nhsuk-heading-s">Estimated expenses </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Total estimated expenses "
+      },
+      value: {
+        text: "£460"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+<h2 class="nhsuk-heading-s">Approver information</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        text: "Example first name"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Example last name"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Job role"
+      },
+      value: {
+        text: "Training programme director"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email address "
+      },
+      value: {
+        text: "example@example.com"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+</div>
+</div>
+
+
+
+
+
+{% from 'button/macro.njk' import button %}
+    
+   <p><a href="">Download this study leave details (PDF)</a></p>
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Go back to dashboard",
+    classes: "nhsuk-button--secondary",
+     href: "dashboard"
+  }) }}
+
+  {{ button({
+    text: "Start new application",
+    classes: "nhsuk-button",
+    href: "apply"
+  }) }}
+
+  
+
+</div>
+
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Expenses - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+   .nhsuk-table__row:hover {
+    background-color: #ffffff !important;
+  }
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Expenses</h1>
+   
+
+  </div>
+ 
+</div>
+
+<style>
+ .expense-added .nhsuk-table__panel-with-heading-tab{margin-bottom: 20px !important;margin-top: 20px !important;}
+</style>
+
+<h2 class="nhsuk-heading-s">Incurred expenses</h2>
+<p class="" style="">Once your claim is approved, the incurred expenses will
+be reimbursed within 48 hours.</p>
+<div class="expense-added" id="expenses">
+{{ table({
+  responsive: true,
+  panel: true,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Expense" },
+    { text: "Detail", format: "text" },
+    { text: "Cost", format: "numeric" },
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: 'Course' },
+      { text: "Course fee"},
+      { text: "£999", format: "numeric" },
+       { html: '<a href="#" class="">Edit <span class="nhsuk-u-visually-hidden"> Course</span></a>' }
+
+   
+    ]
+  ]
+}) }}
+</div>
+
+
+<h2 class="nhsuk-heading-s">Estimated expenses</h2>
+<p class="" style="">Once your request is approved, you'll be able to come back and submit a claim for the actual amount.</p>
+</span>
+<div class="expense-added" id="expenses">
+{{ table({
+  responsive: true,
+  panel: true,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Expense" },
+    { text: "Detail", format: "text" },
+    { text: "Cost", format: "numeric" },
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+   
+    [
+      { html: 'Travel' },
+      { text: "Train"},
+      { text: "£93", format: "numeric" },
+       { html: '<a href="#" class="">Edit <span class="nhsuk-u-visually-hidden"> Travel</span></a>' }
+
+   
+    ],
+    [
+      { html: 'Accommodation' },
+      { text: "2 nights"},
+      { text: "£313", format: "numeric" },
+       { html: '<a href="#" class="">Edit <span class="nhsuk-u-visually-hidden"> Accommodation</span></a>' }
+
+   
+    ]
+  ]
+}) }}
+</div>
+
+<span style="margin: 0px 0px 20px 0px;display: block;font-size: 22px;" class="">Total expenses being claimed: <strong>£1405</strong></span>
+
+<a class="nhsuk-body-m" href="#">Add another expense</a>
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "summary"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+
+ {% endblock %}

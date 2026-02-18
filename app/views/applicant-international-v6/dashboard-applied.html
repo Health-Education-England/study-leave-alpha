@@ -1,0 +1,217 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Your study leave dashboard - NHS
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+    .nhsuk-card__content {
+        padding: 15px !important;}
+        .nhsuk-card-group__item .nhsuk-card {
+    margin-bottom: 16px;
+}
+.nhsuk-card-group__item {
+   
+    margin-right: -16px !important;
+}
+
+        .nhsuk-table__row th,
+  .nhsuk-table__row td  {
+        display: table-cell;
+        font-size: 17px !important;
+    }
+        .nhsuk-action-link {
+        margin-bottom: 18px;
+    }
+
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 style="margin-bottom: 0px;" class="nhsuk-heading-l">Your study leave dashboard</h1>
+   <p class="nhsuk-hint" style="margin-top: 0px;">Book courses and keep track of your study leave applications and expenses claims</p>
+      
+
+  </div>
+ 
+</div>
+
+
+
+
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <div class="nhsuk-grid-row">
+       <div class="nhsuk-grid-column-two-thirds">
+        <div class="row"
+          style="background-color: #ffffff; padding: 20px 25px 25px 25px; display: flex; flex-direction: column; align-items: flex-start;margin-bottom: 30px;">
+
+          {{ actionLink({
+          text: "Apply for study leave",
+          href: "before-you-start"
+          }) }}
+          <span>Find courses and events you want to attend. You can see the steps you’ll need to go through and what
+            information you’ll need, in the <a href="study-leave-guidance">study leave guidance</a></span>
+        </div>
+      </div></div>
+  </div>
+</div>
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+  <h2 class="nhsuk-heading-m" style="margin-bottom: 0px;">Your study leave applications</h2>
+  <p class="nhsuk-hint">13 of 30 days used</p>
+
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search applications 
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-hint"
+          />
+       
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="status-select">Filter by status</label>
+          <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+            <option value="all" selected>All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+
+  <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+<!--Space for show items if required from the team -->
+  </div>
+</div>
+
+
+<div class="nhsuk-tabs" data-module="nhsuk-tabs">
+  <h2 class="nhsuk-tabs__title">
+    Contents
+  </h2>
+  
+  
+
+
+{{ table({
+  responsive: false,
+  panel: true,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Course/event" },
+    
+   
+  
+    { text: "Status", format: "text" },
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+  [
+      { html: '<a href="claim-summary" class="">International Masterclass in Peri-operative Leadership and Crisis Management</a>' },
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="claim-summary" class="">View <span class="nhsuk-u-visually-hidden">International Masterclass in Peri-operative Leadership and Crisis Management</span></a>' }
+    ],
+    [
+      { html: '<a href="#" class="">Clinical ethics & end of life care</a>' },
+   
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--grey">In draft</strong>' },
+       { html: '<a href="#" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+    ],
+    [
+     { html: '<a href="summary-status" class="">Cardiac advanced life support (CALS)</a>' },
+    
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--yellow">In Review</strong>' },
+      { html: '<a href="summary-status" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+      
+    ],
+    [
+    { html: '<a href="#" class="">Tracheostomy / Bronchoscopy skill course</a>' },
+ 
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="#" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+    ],
+    [
+  { html: '<a href="#" class="">Care of the potential organ donor eg National Deceased Donation Course for ICM Trainees</a>' },
+ 
+   
+       { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' },
+        { html: '<a href="#" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+      
+        
+    ],
+    [
+    { html: '<a href="#" class="">European Paediatric Advanced Life Support Course (EPALS)</a>' },
+   
+ 
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+     { html: '<a href="#" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+    ],[
+    { html: '<a href="#" class="">Advanced Life Support (ALS)</a>' },
+   
+  
+     { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+    { html: '<a href="#" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+    ],
+    [
+    { html: '<a href="#" class="">Exam preparation</a>' },
+   
+     
+    { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="#" class="">View <span class="nhsuk-u-visually-hidden">course or event details</span></a>' }
+    ]
+  ]
+}) }}
+ 
+
+
+
+
+ {% endblock %}

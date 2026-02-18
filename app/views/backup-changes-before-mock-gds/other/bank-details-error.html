@@ -1,0 +1,192 @@
+{% extends "layout.html" %}
+
+{% from "button/macro.njk" import button %}
+{% from "input/macro.njk" import input %}
+{% from "checkboxes/macro.njk" import checkboxes %}
+{% from "error-summary/macro.njk" import errorSummary %}
+{% from "back-link/macro.njk" import backLink %}
+
+{% block pageTitle %}
+Bank details – NHS
+{% endblock %}
+
+{% block content %}
+
+<style>
+  select { border-radius: 0 !important; }
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0;
+    margin-bottom: 20px;
+    margin-top: 0 !important;
+  }
+
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  .sortcode .nhsuk-input { max-width: 5.5em; }
+  .account-number .nhsuk-input { max-width: 11.5em; }
+
+  .nhsuk-progress {
+    height: 12px;
+    background: #c3cace;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .nhsuk-progress__bar {
+    height: 100%;
+    background: #007f3b;
+    border-right: 2px solid #ffffff;
+  }
+</style>
+
+<div class="sl-back">
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <span class="nhsuk-caption-l">Claim expenses</span>
+    <h1 class="nhsuk-heading-l">Bank details</h1>
+
+    <div class="nhsuk-progress inputmaxwidth" role="progressbar"
+      aria-valuenow="4"
+      aria-valuemin="1"
+      aria-valuemax="4"
+      aria-label="Page 4 of 4">
+      <div class="nhsuk-progress__bar" style="width: 100%;"></div>
+    </div>
+
+    <span class="nhsuk-body-s nhsuk-u-margin-top-2" aria-hidden="true">
+      Page 4 of 4
+    </span>
+    {{ errorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        { text: "Enter the name on the account", href: "#name" },
+        { text: "Enter a sort code", href: "#sort-code" },
+        { text: "Enter a valid sort code like 309430", href: "#sort-code" },
+        { text: "Enter an account number", href: "#number" },
+        { text: "Enter a valid account number like 00733445", href: "#number" },
+        { text: "Account number must be between 6 and 8 digits", href: "#number" },
+        { text: "Building society roll number must be between 1 and 18 characters", href: "#event-location" }
+      ]
+    }) }}
+
+
+    <p class="nhsuk-hint">
+      Provide your bank details so your expenses can be paid. Payments are usually credited within 48 hours.
+    </p>
+
+    <!-- Name on account -->
+    <div class="inputmaxwidth nhsuk-form-group nhsuk-form-group--error">
+      {{ input({
+        label: {
+          text: "Name on the account",
+          classes: "nhsuk-label--s"
+        },
+        id: "name",
+        name: "name",
+        errorMessage: {
+          text: "Enter the name on the account"
+        }
+      }) }}
+    </div>
+
+    <!-- Sort code -->
+    <div class="inputmaxwidth sortcode nhsuk-form-group nhsuk-form-group--error">
+      {{ input({
+        label: {
+          text: "Sort code",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Must be 6 digits long"
+        },
+        id: "sort-code",
+        name: "sort-code",
+        errorMessage: {
+          text: "Enter a valid sort code like 309430"
+        }
+      }) }}
+    </div>
+
+    <!-- Account number -->
+    <div class="inputmaxwidth account-number nhsuk-form-group nhsuk-form-group--error">
+      {{ input({
+        label: {
+          text: "Account number",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "Must be between 6 and 8 digits long"
+        },
+        id: "number",
+        name: "number",
+        errorMessage: {
+          text: "Account number must be between 6 and 8 digits"
+        }
+      }) }}
+    </div>
+
+    <!-- Roll number -->
+    <div class="inputmaxwidth nhsuk-form-group nhsuk-form-group--error">
+      {{ input({
+        label: {
+          text: "Bank name or building society roll number (optional)",
+          classes: "nhsuk-label--s"
+        },
+        hint: {
+          text: "You can find it on your card, statement or passbook"
+        },
+        id: "event-location",
+        name: "eventLocation",
+        errorMessage: {
+          text: "Building society roll number must be between 1 and 18 characters"
+        }
+      }) }}
+    </div>
+
+    <!-- Save checkbox -->
+    {{ checkboxes({
+      idPrefix: "save-info",
+      name: "saveInfo",
+      fieldset: {
+        legend: {
+          text: "Do you want to save this information?",
+          classes: "nhsuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Save for future study leave applications"
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "summary"
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard-applied"
+  }) }}
+</div>
+
+{% endblock %}

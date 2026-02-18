@@ -1,0 +1,352 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+ Study leave application summary - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Claim expenses</span>
+   <h1 class="nhsuk-heading-l">Application summary for Advanced Trauma Life Support (ATLS)</h1>
+   
+
+   <div class="nhsuk-notification-banner nhsuk-notification-banner--success" role="alert" aria-labelledby="nhsuk-notification-banner-title" data-module="nhsuk-notification-banner">
+  <div class="nhsuk-notification-banner__header">
+    <h2 class="nhsuk-notification-banner__title" id="nhsuk-notification-banner-title">
+    Study leave expenses claimed
+    </h2>
+  </div>
+  <div class="nhsuk-notification-banner__content">
+   
+    <p>If you incurred any additional expenses, you can claim them now.</p>
+      <a href="claim-add-your-additional-expenses" class="nhsuk-button">Claim additional expenses</a>
+      
+  </div>
+</div>
+   
+
+    <p><a href="">Download a copy of this study leave application (PDF) </a></p>
+    <h2 class="nhsuk-heading-s">Course/event details</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Study type "
+      },
+      value: {
+        text: "Mandatory"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+        text: "Course"
+      },
+      actions: {
+        
+      }
+    }, 
+    {
+      key: {
+        text: "Course/event name "
+      },
+      value: {
+        text: "Advanced Trauma Life Support (ATLS)"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "RCS (Royal College of Surgeons)	"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information "
+      },
+      value: {
+         text: "N/A"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+    <h2 class="nhsuk-heading-s">Location and date </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "3 Feb 2026"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+   
+   
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "4 Feb 2026"
+      },
+      actions: {
+        
+      }
+    },
+     {
+      key: {
+        text: "Time away from home"
+      },
+      value: {
+        text: "10 hours away after 7pm"
+      },
+      actions: {
+       
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "London"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Evidence of approval</h2>
+</div>
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Evidence"
+      },
+      value: {
+         text: "This application is for a mandatory course, therefore no further approval is required. "
+      },
+      actions: {
+       
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+    <h2 class="nhsuk-heading-s">Incurred expenses </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Total incurred expenses "
+      },
+      value: {
+        text: "£999"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+  <h2 class="nhsuk-heading-s">Estimated expenses </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Total estimated expenses "
+      },
+      value: {
+        text: "£406"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+<h2 class="nhsuk-heading-s">Approver information</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        text: "Harry"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Smith"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Job role"
+      },
+      value: {
+        text: "Educational Supervisor"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email address "
+      },
+      value: {
+        text: "harry.smith@nhs.net"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+
+</div>
+</div>
+
+
+
+
+
+<a href="claim-add-your-additional-expenses" class="nhsuk-button">Claim additional expenses</a>
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Will you incur any other expenses? - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Have you incurred any more expenses?</h1>
+    
+
+    {% from 'radios/macro.njk' import radios %}
+    {{ radios({
+      idPrefix: "otherExpenses",
+      name: "otherExpenses",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "nhsuk-fieldset__legend--s",
+          isPageHeading: true
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
+
+
+
+<div class="nhsuk-button-group">
+  <a id="continueButton" class="nhsuk-button">Save and continue</a>
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+<script>
+  document.getElementById("continueButton").addEventListener("click", function (e) {
+    const selected = document.querySelector('input[name="otherExpenses"]:checked');
+
+    if (!selected) {
+      e.preventDefault();
+      alert("Please select yes or no");
+      return;
+    }
+
+    if (selected.value === "yes") {
+      window.location.href = "add-expense";  
+    } else {
+      window.location.href = "apply-expense-expected";   
+    }
+  });
+</script>
+
+{% endblock %}

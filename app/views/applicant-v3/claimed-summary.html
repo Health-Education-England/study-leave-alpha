@@ -1,0 +1,351 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Claim expenses</span>
+   <h1 class="nhsuk-heading-l">Study leave application summary</h1>
+   
+
+   <div class="nhsuk-notification-banner nhsuk-notification-banner--success" role="alert" aria-labelledby="nhsuk-notification-banner-title" data-module="nhsuk-notification-banner">
+  <div class="nhsuk-notification-banner__header">
+    <h2 class="nhsuk-notification-banner__title" id="nhsuk-notification-banner-title">
+    Study leave expenses claimed
+    </h2>
+  </div>
+  <div class="nhsuk-notification-banner__content">
+    <h3 class="nhsuk-notification-banner__heading">
+     </h3>
+    <p>If you incurred any additional expenses, you can claim them now.</p>
+      <a href="claim-add-your-additional-expenses" class="nhsuk-button">Claim additional expenses</a>
+      
+  </div>
+</div>
+   
+
+    <p><a href="">Download a copy of this study leave application (PDF) </a></p>
+    <h2 class="nhsuk-heading-s">Course/event details</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Study type "
+      },
+      value: {
+        text: "Pre-approved"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+        text: "Course"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Course/event name "
+      },
+      value: {
+        text: "Advanced Trauma Life Support (ATLS)"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "RCS (Royal College of Surgeons)	"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information "
+      },
+      value: {
+         text: "N/A"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+    <h2 class="nhsuk-heading-s">Location and date </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "3 Feb 2026"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "4 Feb 2026"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "London"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+    <h2 class="nhsuk-heading-s">Estimated expenses </h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Total estimated expenses "
+      },
+      value: {
+        text: "£1405"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+<h2 class="nhsuk-heading-s">Approver information</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        text: "Harry"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Smith"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Job role"
+      },
+      value: {
+        text: "Educational Supervisor"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Email address "
+      },
+      value: {
+        text: "harry.smith@nhs.net"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+</div>
+</div>
+
+
+
+
+
+<a href="claim-add-your-additional-expenses" class="nhsuk-button">Claim additional expenses</a>
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,187 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Expenses claim summary - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Claim expenses</span>
+   <h1 class="nhsuk-heading-l">Expenses claim summary</h1>
+   <p class="nhsuk-hint">Review your expenses before submitting your claim. Once approved, your expenses should be credited to your bank account within 48 hours depending on who you bank with</p>
+    
+   
+   
+   
+   <h2 class="nhsuk-heading-s">Travel</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Travel type"
+      },
+      value: {
+        text: "Bus"
+      },
+      actions: {
+        
+      }
+    }, 
+    {
+      key: {
+        text: "Cost"
+      },
+      value: {
+        text: "£10"
+      },
+      actions: {
+       
+      }
+    },
+    {
+      key: {
+        text: "Uploaded receipts"
+      },
+      value: {
+        html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'
+      },
+      actions: {
+       
+      }
+    }
+  ]
+}) }}
+
+
+
+   <h2 class="nhsuk-heading-s">Supporting information</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Comments"
+      },
+      value: {
+        text: "N/A"
+      },
+      actions: {
+        
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+  
+   <h2 class="nhsuk-heading-s">Bank details</h2> 
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Account holder name"
+      },
+      value: {
+        text: "James Smith"
+      },
+      actions: {
+       
+      }
+    },
+    {
+      key: {
+        text: "Sort code"
+      },
+      value: {
+        text: "12-34-56"
+      },
+      actions: {
+        
+      }
+    }, 
+    {
+      key: {
+        text: "Account number"
+      },
+      value: {
+        text: "12345678"
+      },
+      actions: {
+       
+      }
+    },
+    {
+      key: {
+        text: "Bank name"
+      },
+      value: {
+        html: ''
+      },
+      actions: {
+        
+      }
+    }
+  ]
+}) }}
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Submit claim",
+    classes: "nhsuk-button--green",
+    href: "additional-claim-success"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard-claimed" 
+  }) }}
+</div>
+
+
+ {% endblock %}

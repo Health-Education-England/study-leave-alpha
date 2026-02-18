@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Application submitted - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .sl-summary-title .nhsuk-summary-list__row {border-bottom: 0px solid #d8dde0;}
+  .sl-summary-title .nhsuk-summary-list { margin-bottom: 0px !important;}
+</style>
+
+
+
+{% from "panel/macro.njk" import panel %}
+{% from "summary-list/macro.njk" import summaryList %}
+
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      {{ panel({
+        titleText: "Application submitted",
+        text: "Your study leave request has been submitted and is awaiting review. "
+      }) }}
+<p>We’ve sent you a confirmation email. </p>
+      <h2 class="nhsuk-heading-m">What happens next</h2>
+
+     <ul>
+      <li>Your approver will review your application and may require more information from you</li>
+ <li>Once approved, you’ll be able to come back and claim your estimated expenses</li>
+     </ul>
+
+      <p>
+        <a href="#">Download a copy of this study leave application (PDF)</a>
+      </p>
+
+
+ 
+
+
+      <a href="dashboard-applied" class="nhsuk-button">Return to your dashboard</a>
+
+    </div>
+  </div>
+{% endblock %}

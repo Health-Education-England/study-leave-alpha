@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Withdraw your aplication - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Withdraw Study leave application</span>
+   <h1 class="nhsuk-heading-l">Withdraw your aplication</h1>
+
+
+
+{% from "radios/macro.njk" import radios %}
+{% from "textarea/macro.njk" import textarea %}
+
+{{ radios({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Select reason for withdraw",
+      classes: "nhsuk-fieldset__legend--s",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "Application error",
+      text: "Application error"
+    },
+    {
+      value: "Not able to make it",
+      text: "Not able to make it example text"
+    },
+    {
+      value: "Other",
+      text: "Other",
+      conditional: {
+        html: textarea({
+          id: "other-reason",
+          name: "other-reason",
+          label: {
+            text: "Please specify your reason"
+          }
+        })
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+<a href="dashboard" class="nhsuk-button">Withdraw application</a>
+
+
+<script src="/nhsuk-frontend/nhsuk.min.js"></script>
+<script>window.NHSUKFrontend.initAll()</script>
+
+
+ {% endblock %}

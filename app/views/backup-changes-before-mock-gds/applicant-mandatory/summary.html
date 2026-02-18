@@ -1,0 +1,470 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Summary - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .sl-summary-title .nhsuk-summary-list__row {border-bottom: 0px solid #d8dde0;}
+  .sl-summary-title .nhsuk-summary-list { margin-bottom: 0px !important;}
+
+
+
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 class="nhsuk-heading-l">Application summary</h1>
+<p class="nhsuk-hint">Review the information you’ve provided before agreeing to the declaration and submitting your application </p> 
+
+    
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Course/event details </h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "Change",
+            visuallyHiddenText: "Course/event details "
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    
+   
+    {
+      key: {
+        text: "Study type"
+      },
+      value: {
+         text: "Mandatory"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Study activity"
+      },
+      value: {
+         text: "Course"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Course/event name "
+      },
+      value: {
+         text: "Advanced Trauma Life Support (ATLS)"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Provider "
+      },
+      value: {
+         text: "RCS (Royal College of Surgeons)"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information"
+      },
+      value: {
+         text: "N/A"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    }
+    
+  ]
+}) }}
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Location and date</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "Change",
+            visuallyHiddenText: "Location and date"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "3 Feb 2026"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Start time"
+      },
+      value: {
+        text: "9:30am"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    },
+   
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "4 Feb 2026"
+      },
+      actions: {
+      
+      }
+    },
+     {
+      key: {
+        text: "End time"
+      },
+      value: {
+        text: "4:30pm"
+      },
+      actions: {
+       
+      }
+    }, 
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+        text: "2"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    },
+    
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+         text: "London"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  
+  ]
+}) }}
+
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Incurred expenses</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "Change",
+            visuallyHiddenText: "Incurred expenses"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Total incurred expenses"
+      },
+      value: {
+         text: "£999"
+      },
+      actions: {
+        items: [
+         
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Estimated expenses</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "apply",
+            text: "Change",
+            visuallyHiddenText: "Estimated expenses"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Total estimated expenses"
+      },
+      value: {
+         text: "£406"
+      },
+      actions: {
+        items: [
+          
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+<div class="sl-summary-title">
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        html: '<h2 style="text-wrap-mode: nowrap;" class="nhsuk-heading-s">Bank details</h2>'
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "approver-info",
+            text: "Change",
+            visuallyHiddenText: "Evidence of approval"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+</div>
+
+{{ summaryList({
+  rows: [
+    
+    {
+      key: {
+        text: "Name on the account"
+      },
+      value: {
+         text: "James Smith"
+      },
+      actions: {
+       
+      }
+    },{
+      key: {
+        text: "Bank name"
+      },
+      value: {
+         text: "HSBC UK "
+      },
+      actions: {
+       
+      }
+    },
+     {
+      key: {
+        text: "Sort code"
+      },
+      value: {
+         text: "123456 "
+      },
+      actions: {
+       
+      }
+    },
+    {
+      key: {
+        text: "Account number"
+      },
+      value: {
+         text: "12345678"
+      },
+      actions: {
+       
+      }
+    }
+  ]
+}) }}
+
+
+
+
+</div>
+</div>
+
+
+
+<div style="background-color: white; padding: 30px 30px 5px 30px;margin-bottom: 30px;">
+<h2 class="nhsuk-heading-s">Study leave declaration </h2>
+
+<ol>
+  <li>I have sought permission to be away from the clinical area.</li>
+  <li>I shall ensure that my colleagues are fully aware of my absence and that my clinical responsibilities will be covered.</li>
+  <li>I have read the guidance on study leave and will abide by the conditions laid down in the terms and conditions.</li>
+  <li>I have provided all the information required for the application to be considered in full.</li>
+  <li>I’ll submit all relevant receipts within 3 months of the date of the study leave event if this application is approved with expenses.</li>
+  <li>I’ll inform the Deanery of any subsequent changes to this application that may result in refundable expenditure.</li>
+  <li>If I do not attend the course, I’m obliged to inform my Training Programme Director (TPD) as soon as possible.</li>
+</ol>
+
+
+{% from 'checkboxes/macro.njk' import checkboxes %}
+
+{{ checkboxes({
+ 
+  items: [
+    {
+      value: "confirm",
+      text: "I agree to the declaration"
+    }
+  ]
+}) }}
+</div>
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "application-success"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+
+ {% endblock %}

@@ -1,0 +1,163 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+   <h1 class="nhsuk-heading-l">Location and date</h1>
+
+
+
+
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "Course/event location",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "Provide the town or city where you’ll be attending the course/event "
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+</div>
+
+
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "start-date",
+  namePrefix: "Start date",
+  fieldset: {
+    legend: {
+      text: "Start date",
+      classes: "nhsuk-label--s"
+    }
+  },
+  hint: {
+    text: "For example, 15 11 2025"
+  },
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{{ dateInput({
+  id: "end-date",
+  namePrefix: "end date",
+  fieldset: {
+    legend: {
+      text: "End date",
+      classes: "nhsuk-label--s"
+    }
+  },
+  hint: {
+    text: "For example, 17 11 2025"
+  },
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+{% from 'input/macro.njk' import input %}
+
+<div class="inputmaxwidth">
+{{ input({
+  label: {
+    text: "Number of days requested",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "This is the number of days you’ll be using from your study leave allocation. Only include the number of days you’ll actually be studying"
+  },
+  id: "event-days",
+  name: "eventDays"
+}) }}
+</div>
+
+
+
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "apply-expense"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard" 
+  }) }}
+</div>
+
+
+
+
+ {% endblock %}

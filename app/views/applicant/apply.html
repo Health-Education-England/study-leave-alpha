@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for Study leave</span>
+   <h1 class="nhsuk-heading-l">Study leave type and date details</h1>
+
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Select Study leave type",
+    classes: "nhsuk-label--s"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Pre-approved",
+      selected: true
+    },
+    {
+      value: 2,
+      text: "Discretionary"
+      
+    },
+    {
+      value: 3,
+      text: "International"
+    }
+  ]
+}) }}
+
+
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "example",
+  namePrefix: "example",
+  fieldset: {
+    legend: {
+      text: "Start date",
+      classes: "nhsuk-label--s"
+    }
+  },
+  hint: {
+    text: "For example, 15 11 2025"
+  },
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{{ dateInput({
+  id: "example-2",
+  namePrefix: "example-2",
+  fieldset: {
+    legend: {
+      text: "End date",
+      classes: "nhsuk-label--s"
+    }
+  },
+  hint: {
+    text: "For example, 17 11 2025"
+  },
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+{% from 'input/macro.njk' import input %}
+
+<div class="inputmaxwidth">
+{{ input({
+  label: {
+    text: "Number of days requested",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "For example, 10"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+</div>
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+<a href="course" class="nhsuk-button">Save and continue</a>
+
+
+
+
+ {% endblock %}

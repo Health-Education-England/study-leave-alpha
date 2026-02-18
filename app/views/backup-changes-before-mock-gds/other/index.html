@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% from "button/macro.njk" import button %}
+{% from "input/macro.njk" import input %}
+{% from "checkboxes/macro.njk" import checkboxes %}
+{% from "error-summary/macro.njk" import errorSummary %}
+{% from "back-link/macro.njk" import backLink %}
+
+{% block pageTitle %}
+Bank details – NHS
+{% endblock %}
+
+{% block content %}
+
+<style>
+  select { border-radius: 0 !important; }
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0;
+    margin-bottom: 20px;
+    margin-top: 0 !important;
+  }
+
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  .sortcode .nhsuk-input { max-width: 5.5em; }
+  .account-number .nhsuk-input { max-width: 11.5em; }
+
+  .nhsuk-progress {
+    height: 12px;
+    background: #c3cace;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .nhsuk-progress__bar {
+    height: 100%;
+    background: #007f3b;
+    border-right: 2px solid #ffffff;
+  }
+</style>
+
+<div class="sl-back">
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+
+{% from "contents-list/macro.njk" import contentsList %}
+
+{{ contentsList({
+  items: [
+   
+    {
+      href: "other/apply-date-error",
+      text: "Error screens example 1"
+    },
+     {
+      href: "other/bank-details-error",
+      text: "Error screens example 2"
+    }
+  ]
+}) }}
+
+{% endblock %}

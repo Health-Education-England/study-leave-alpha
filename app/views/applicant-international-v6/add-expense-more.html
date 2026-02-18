@@ -1,0 +1,191 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Add estimated expense - NHS
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+ 
+  #travel-type-wrapper, #mileage-wrapper { margin-top: 8px; }
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Apply for study leave</span>
+    <h1 class="nhsuk-heading-l">Add estimated expense</h1>
+
+    {# --- Expense / Travel UI (replace the original selects/inputs) --- #}
+
+    {{ select({
+      id: "expense-type",
+      name: "expense-type",
+      label: {
+        text: "Expense type",
+        classes: "nhsuk-label--s"
+      },
+      items: [
+        { value: "course-fee", text: "Course fee" },
+        { value: "travel", text: "Travel" },
+        
+        { value: "accommodation", text: "Accommodation" }
+      ]
+    }) }}
+
+    {# Travel type select (hidden unless expense = travel) #}
+    <div id="travel-type-wrapper" style="display:none;">
+      {{ select({
+        id: "travel-type",
+        name: "travel-type",
+        label: {
+          text: "Travel type",
+          classes: "nhsuk-label--s"
+        },
+        items: [
+          { value: "", text: "Select travel type" },
+          { value: "train", text: "Train" },
+          { value: "air", text: "Air" },
+          { value: "bus", text: "Bus" },
+          { value: "mileage", text: "Mileage" }
+         
+        ]
+      }) }}
+    </div>
+
+    {# Miles input: only visible when travel-type = mileage #}
+    <div id="mileage-wrapper" style="display:none;">
+      <div class="nhsuk-form-group">
+        <label class="nhsuk-label nhsuk-label--s" for="miles">Miles</label>
+        <span id="miles-hint" class="nhsuk-hint">Enter number of miles travelled</span>
+        <input class="nhsuk-input inputmaxwidth" id="miles" name="miles" type="number" min="0" step="0.1" inputmode="decimal" />
+      </div>
+    </div>
+
+    {# Cost input: when mileage is used this will be auto-filled and readonly; otherwise user can type #}
+    {{ input({
+      label: {
+        text: "Cost",
+        classes: "nhsuk-label--s",
+        format: "numeric"
+      },
+      hint: {
+        text: ""
+      },
+      id: "cost",
+      name: "cost",
+       prefix: "£",
+
+      classes: "inputmaxwidth",
+      attributes: {
+        autocomplete: "off"
+      }
+    }) }}
+
+    {# Any other form fields can go here #}
+
+  </div>
+</div>
+
+<p><a>Add another expense</a></p>
+<a href="expense-added#expenses" class="nhsuk-button">Save and continue</a>
+
+{# --- Behaviour script: show/hide and mileage calculation --- #}
+<script>
+(function () {
+  // Config: per-mile rate in GBP (edit this value to change reimbursement rate)
+  const MILE_RATE = 0.45;
+
+  const expenseSelect = document.getElementById('expense-type');
+  const travelWrapper = document.getElementById('travel-type-wrapper');
+  const travelSelect = document.getElementById('travel-type');
+  const mileageWrapper = document.getElementById('mileage-wrapper');
+  const milesInput = document.getElementById('miles');
+  const costInput = document.getElementById('cost');
+
+  function show(el){ if(el) el.style.display = ''; }
+  function hide(el){ if(el) el.style.display = 'none'; }
+
+  // When expense type changes: show travel select only when 'travel'
+  function onExpenseChange() {
+    if (!expenseSelect) return;
+    const val = expenseSelect.value;
+    if (val === 'travel') {
+      show(travelWrapper);
+      if (travelSelect) travelSelect.removeAttribute('disabled');
+      onTravelChange();
+    } else {
+      hide(travelWrapper);
+      hide(mileageWrapper);
+      if (travelSelect) travelSelect.value = '';
+      if (milesInput) milesInput.value = '';
+      if (costInput) costInput.removeAttribute('readonly');
+    }
+  }
+
+  // When travel type changes: if mileage selected, reveal miles input and make cost readonly & auto-calc
+  function onTravelChange() {
+    if (!travelSelect) return;
+    const val = travelSelect.value;
+    if (val === 'mileage') {
+      show(mileageWrapper);
+      if (costInput) costInput.setAttribute('readonly', 'readonly');
+      calculateCostFromMiles();
+    } else {
+      hide(mileageWrapper);
+      if (milesInput) milesInput.value = '';
+      if (costInput) costInput.removeAttribute('readonly');
+    }
+  }
+
+  // calculate cost from miles and write to cost input (2 decimal places)
+  function calculateCostFromMiles() {
+    if (!milesInput || !costInput) return;
+    const miles = parseFloat(milesInput.value || 0);
+    if (isFinite(miles) && miles > 0) {
+      const cost = (miles * MILE_RATE);
+      costInput.value = cost.toFixed(2);
+    } else {
+      costInput.value = '';
+    }
+  }
+
+  // initialise state and attach listeners
+  function init() {
+    if (!expenseSelect || !travelSelect || !costInput) return;
+
+    expenseSelect.addEventListener('change', onExpenseChange);
+    travelSelect.addEventListener('change', onTravelChange);
+    if (milesInput) milesInput.addEventListener('input', calculateCostFromMiles);
+
+    // Reflect any server-side preselection:
+    onExpenseChange();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+{% endblock %}

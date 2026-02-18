@@ -1,0 +1,259 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+
+<div class="nhsuk-notification-banner nhsuk-notification-banner--warning" role="alert" aria-labelledby="nhsuk-notification-banner-title" data-module="nhsuk-notification-banner">
+  <div class="nhsuk-notification-banner__header">
+    <h2 class="nhsuk-notification-banner__title" id="nhsuk-notification-banner-title">
+      Request submitted
+    </h2>
+  </div>
+  <div class="nhsuk-notification-banner__content">
+    <h3 class="nhsuk-notification-banner__heading">
+     Your Study leave request is under review with the admin
+    </h3>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+    <a href="withdraw">Withdraw request</a>
+  </div>
+</div>
+
+
+
+
+    
+   <h1 class="nhsuk-heading-l">Your Study leave summary</h1>
+    <h2 class="nhsuk-heading-s">Date details</h2>
+
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Study leave type"
+      },
+      value: {
+        text: "Discretionary"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "15 March 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "17 March 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Days requested"
+      },
+      value: {
+         text: "15"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+ <h2 class="nhsuk-heading-s">Course details</h2>
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Event or course name"
+      },
+      value: {
+        text: "Example course"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+        text: "Example location"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    }, 
+    {
+      key: {
+        text: "Supporting file"
+      },
+      value: {
+        text: "Not uploaded"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting information"
+      },
+      value: {
+         text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Total amount to be claimed back"
+      },
+      value: {
+         text: "£126"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "change",
+            visuallyHiddenText: "contact information"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+<div>
+<h2 class="nhsuk-heading-s">Declaration signed</h2>
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+{% from 'button/macro.njk' import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Withdraw application",
+    classes: "nhsuk-button--warning"
+  }) }}
+
+  {{ button({
+    text: "Apply for Study leave",
+    classes: "nhsuk-button"
+  }) }}
+</div>
+
+
+
+
+
+
+
+ {% endblock %}

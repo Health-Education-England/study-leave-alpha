@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select, 
+  .nhsuk-input {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  /* Hide button by default */
+  #add-expense-btn {
+    display: none;
+    margin-top: 20px;
+  }
+</style>
+<div class="apply-sl">
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+   <div class="inputmaxwidth">
+{% from "radios/macro.njk" import radios %}
+{% from "textarea/macro.njk" import textarea %}
+
+{{ radios({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Select reason for rejection",
+      classes: "nhsuk-fieldset__legend--s",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "Reason for rejection 1",
+      text: "Reason for rejection 1"
+    },
+    {
+      value: "Reason for rejection 2",
+      text: "Reason for rejection 2"
+    },
+    {
+      value: "Other",
+      text: "Other",
+      conditional: {
+        html: textarea({
+          id: "other-reason",
+          name: "other-reason",
+          label: {
+            text: "Please specify your reason"
+          }
+        })
+      }
+    }
+  ]
+}) }}
+
+</div>
+</div>
+
+{% from 'button/macro.njk' import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Submit",
+    classes: "nhsuk-button",
+    href: "dashboard"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+      href: "summary"  
+  }) }}
+</div>
+
+
+{% endblock %}

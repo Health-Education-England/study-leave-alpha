@@ -1,0 +1,192 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 450px !important;max-width: 450px !important;}
+  .apply-sl .inputmaxwidth{min-width: 450px !important;max-width: 450px !important;}
+  .sortcode .nhsuk-input{max-width: 5.5em;}
+  .account-number .nhsuk-input{max-width: 11.5em;}
+  
+  
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+    <span class="nhsuk-caption-l">Claim expenses</span>
+   <h1 class="nhsuk-heading-l">Bank details</h1>
+
+<div class="nhsuk-progress inputmaxwidth" role="progressbar"
+     aria-valuenow="1"
+     aria-valuemin="1"
+     aria-valuemax="5"
+     aria-label="Page 5 of 5">
+  <div class="nhsuk-progress__bar" style="width: calc(5 / 5 * 100%);"></div>
+</div>
+
+<p class="nhsuk-body-s nhsuk-u-margin-top-2">
+  Page 5 of 5
+</p>
+
+<style>
+ .nhsuk-progress {
+  height: 12px;
+  background: #c3cace; /* NHS Grey 4 */
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.nhsuk-progress__bar {
+  height: 100%;
+  background: #007f3b; /* NHS Green */
+  transition: width 0.3s ease;
+  border-right:2px solid #ffffff;
+}
+.nhsuk-context-banner {
+  background-color: #ffffff; /* NHS “blue tints” */
+
+}
+
+</style>
+   <p class="nhsuk-hint">Provide your bank details so your expenses can be paid. Payments should be credited to your bank account within 48 hours depending on who you bank with </p>
+
+
+
+
+   {% from 'select/macro.njk' import select %}
+
+
+
+
+<div class="inputmaxwidth">
+ {{ input({
+  label: {
+    text: "Name on the account",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: ""
+  },
+  id: "name",
+  name: "name"
+}) }}
+</div>
+
+
+
+
+<div class="inputmaxwidth sortcode">
+ {{ input({
+  label: {
+    text: "Sort code",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "Must be 6 digits long"
+  },
+  id: "sort-code",
+  name: "sort-code"
+}) }}
+</div>
+
+<div class="inputmaxwidth account-number">
+{{ input({
+  label: {
+    text: "Account number",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "Must be between 6 and 8 digits long"
+  },
+  id: "number",
+  name: "number"
+}) }}
+
+</div>
+<div class="inputmaxwidth">
+{{ input({
+  label: {
+    text: "Bank name or building society roll number (optional)",
+    classes: "nhsuk-label--s"
+  },
+  hint: {
+    text: "You can find it on your card, statement or passbook"
+  },
+  id: "event-location",
+  name: "eventLocation"
+}) }}
+
+</div>
+
+
+
+
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Do you want to save this information?",
+      classes: "nhsuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "Save for future study leave applications ",
+      text: "Save for future study leave applications "
+    }
+  ]
+}) }}
+
+
+
+
+
+  </div>
+ 
+</div>
+
+
+
+
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Save and continue",
+    classes: "nhsuk-button--green",
+    href: "summary"  
+  }) }}
+
+  {{ button({
+    text: "Cancel",
+    classes: "nhsuk-button--secondary",
+    href: "dashboard-applied" 
+  }) }}
+</div>
+
+ {% endblock %}

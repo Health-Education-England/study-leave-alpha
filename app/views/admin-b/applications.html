@@ -1,0 +1,203 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Applications - NHS 
+{% endblock %}
+
+{% block content %}
+<style>
+    select {border-radius: 0 !important;}
+  .sl-back  .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select{min-width: 350px !important;max-width: 350px !important;}
+  .apply-sl .inputmaxwidth{min-width: 350px !important;max-width: 350px !important;}
+  .sl-summary-title .nhsuk-summary-list__row {border-bottom: 0px solid #d8dde0;}
+  .sl-summary-title .nhsuk-summary-list { margin-bottom: 0px !important;}
+     th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+
+
+
+</style>
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+     th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1  style="margin-bottom: 0px;"  class="nhsuk-heading-l">Applications</h1>
+   <p class="nhsuk-hint" style="margin-top: 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+      
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search applications
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-applications"
+          />
+       
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="status-select">Filter by status</label>
+          <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+            <option value="all" selected>All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+
+          </select>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
+
+
+<div>
+
+
+      {{ table({
+      responsive: true,
+      panel: true,
+      firstCellIsHeader: false,
+      head: [
+      { text: "Course/event" },
+      { text: "Applicant" },
+      { text: "Date submitted", format: "text" },
+      { text: "Status", format: "text" },
+      { text: "Action", format: "text" }
+
+      ],
+      rows: [
+      [
+      { html: '<a href="summary">Advanced Trauma Life Support (ATLS)' },
+        { html: '<span>James Smith</span>' },
+        { html: '15 Nov 2025 ', format: "text" },
+
+       
+        { html: '<strong class="nhsuk-tag nhsuk-tag--yellow">Pending</strong>' },
+        { html: '<a href="summary">View <span class="nhsuk-u-visually-hidden">Advanced Trauma Life Support (ATLS)</span></a>' }
+        ],
+        [
+        { html: '<a href="#">Consultant Interview Course</a>' },
+        { html: '<span>Charlotte Evans</span>' },
+       { html: '15 Nov 2025 ', format: "text" },
+
+        
+        { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' },
+        { html: '<a href="#">View <span class="nhsuk-u-visually-hidden">Consultant Interview Course</span></a>' }
+        ],
+        [
+        { html: '<a href="#">RCEM Emergency Medicine Conference</a>' },
+        { html: '<span>Charlie Fletcher</span>' },
+         { html: '15 Nov 2025 ', format: "text" },
+
+      
+        { html: '<strong class="nhsuk-tag nhsuk-tag--yellow">Pending</strong>' },
+        { html: '<a href="#">View <span class="nhsuk-u-visually-hidden">RCEM Emergency Medicine Conference</span></a>' }
+        ],
+        [
+        { html: '<a href="#">Awake Fibreoptic Intubation Course (AFOI)</a>' },
+        { html: '<span>Amelia Collins</span>' },
+         { html: '14 Nov 2025 ', format: "text" },
+       
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View <span class="nhsuk-u-visually-hidden">Awake Fibreoptic Intubation Course (AFOI)</span></a>' }
+        ],
+        [
+        { html: '<a href="#">Critically Ill Child Recognition & Stabilisation Course</a>' },
+        { html: '<span>Daniel Osei</span>' },
+         { html: '14 Nov 2025 ', format: "text" },
+      
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View <span class="nhsuk-u-visually-hidden">Critically Ill Child Recognition & Stabilisation Course</span></a>' }
+        ],
+        [
+        { html: '<a href="#">Paediatric Simulation Training</a>' },
+        { html: '<span>Robert Hughes</span>' },
+         { html: '14 Nov 2025 ', format: "text" },
+  
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View <span class="nhsuk-u-visually-hidden">Paediatric Simulation Training</span></a>' }
+        ],
+        [
+        { html: '<a href="#">Human Factors Training</a>' },
+        { html: '<span>Aisha Ahmad</span>' },
+          { html: '13 Nov 2025 ', format: "text" },
+   
+        { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="#">View <span class="nhsuk-u-visually-hidden">Human Factors Training</span></a>' }
+        ]
+        ]
+        }) }}
+</div>
+ 
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+ {% endblock %}

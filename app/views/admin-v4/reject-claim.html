@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+  .sl-back .nhsuk-back-link {
+    padding-top: 0px;
+    margin-bottom: 20px;margin-top: 0px !important;
+  }
+  .apply-sl .nhsuk-select, 
+  .nhsuk-input {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+  .apply-sl .inputmaxwidth {
+    min-width: 450px !important;
+    max-width: 450px !important;
+  }
+
+  /* Hide button by default */
+  #add-expense-btn {
+    display: none;
+    margin-top: 20px;
+  }
+    th, td{font-size: 17px !important;}
+     .nhsuk-table__row:hover {background-color: #ffffff !important;}
+     .expense-note {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  color: #4c6272; /* NHS greys */
+}
+</style>
+
+<div class="sl-back">
+  {% from 'back-link/macro.njk' import backLink %}
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-two-thirds">
+       <span class="nhsuk-caption-l">Expense claim</span>
+    <h1 class="nhsuk-heading-l">Reason for sending back to applicant</h1>
+<p class="nhsuk-hint">Provide the reason you’ll not be approving this expenses claim</p>
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+     View expenses claim (£1458.40)
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+   
+
+   
+<div class="expense-added" id="expenses">
+
+{{ table({
+  responsive: true,
+  panel: false,
+  caption: "Expenses added",
+  firstCellIsHeader: false,
+  head: [
+    { text: "Expense" },
+    { text: "Type", format: "text" },
+    { text: "Receipt", format: "text" },
+    { text: "Estimated cost", format: "numeric" },
+    { text: "Actual cost", format: "numeric" }
+  ],
+  rows: [
+    [
+      { html: 'Course' },
+      { text: "Course fee"},
+      { html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£999", format: "numeric" },
+      { text: "£999", format: "numeric" }
+    ],
+    [
+      { html: 'Travel', classes: 'nhsuk-tag--yellow' },
+      { text: "Train" , classes: "nhsuk-tag--yellow" },
+      { html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>', classes: 'nhsuk-tag--yellow'},
+      { text: "£93", format: "numeric" , classes: "nhsuk-tag--yellow" },
+      {
+        html: '<span style="background-color: #f7d4d1;color: #6b140e;border: 1px solid #6b140e;padding: 2px;">£193</span> <span style="font-size: 12px;line-height: 18px !important;font-weight: bold;">£100 more</span>',
+        format: "numeric",
+        classes: "nhsuk-tag--yellow"
+      }
+    ],
+    [
+      { html: 'Travel' },
+      { text: "Car park"},
+      { html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£12", format: "numeric" },
+      { text: "£12", format: "numeric" }
+    ],
+    [
+      { html: 'Travel' },
+      { text: "Millage - 32 miles"},
+      { html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£14.40", format: "numeric" },
+      { text: "£14.40", format: "numeric" }
+    ],
+    [
+      { html: 'Accommodation' },
+      { text: "2 nights"},
+      { html: '<a href="../images/example.pdf" target="_blank" rel="noopener">filename.pdf (opens in new tab)</a>'},
+      { text: "£240", format: "numeric" },
+      { text: "£240", format: "numeric" }
+    ],
+    [
+      { html: '<b>Total</b>' },
+      { text: ""},
+      { html: '<a href="#" class=""></a>' },
+      { html: '<b>£1358.40</b>', format: "numeric"  },
+      { html: '<b>£1458.40</b>', format: "numeric"  }
+    ]
+  ]
+}) }}
+
+</div>
+
+  </div>
+</details>
+
+   <div class="inputmaxwidth">
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+{% from "textarea/macro.njk" import textarea %}
+
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example[]",
+  fieldset: {
+    legend: {
+      text: "",
+      classes: "nhsuk-fieldset__legend--s",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "cost-higher",
+      text: "Cost is higher than original estimate"
+    },
+    {
+      value: "deadline-passed",
+      text: "Deadline for expenses claim has passed"
+    }, 
+    {
+      value: "receipts-not-readable",
+      text: "Submitted receipts are not readable"
+    },
+    {
+      value: "incorrect-receipts",
+      text: "Incorrect receipts submitted"
+    },
+    {
+      value: "other",
+      text: "Other",
+      conditional: {
+        html: textarea({
+          id: "other-reason",
+          name: "other-reason",
+          label: {
+            text: "Provide a reason for sending back to the applicant"
+          }
+        })
+      }
+    }
+  ]
+}) }}
+
+</div>
+
+
+
+<div class="nhsuk-button-group">
+{{ button({
+  text: "Save and continue",
+  classes: "nhsuk-button",
+  href: "reject-claim-email"  
+}) }}
+
+  {{ button({
+    text: "Save as draft",
+    classes: "nhsuk-button--secondary",
+    href: "#" 
+  }) }}
+</div>
+ <p><a href="">Cancel</a></p>
+ 
+ </div>
+</div>
+
+{# ---- end script ---- #}
+
+{% endblock %}

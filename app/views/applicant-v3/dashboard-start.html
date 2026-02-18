@@ -1,0 +1,509 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+
+{% block pageTitle %}
+  Future tudy leave serviSce - NHS England
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .m-studyleave .nhsuk-table__panel-with-heading-tab{margin-top: 10px !important;}
+    .nhsuk-card__content {
+        padding: 15px !important;}
+        .nhsuk-card-group__item .nhsuk-card {
+    margin-bottom: 16px;
+}
+.nhsuk-card-group__item {
+   
+    margin-right: -16px !important;
+}
+
+    .nhsuk-table-responsive .nhsuk-table__body .nhsuk-table__row th, .nhsuk-table-responsive .nhsuk-table__body .nhsuk-table__row td {
+        display: table-cell;
+        font-size: 17px !important;
+    }
+        .nhsuk-action-link {
+        margin-bottom: 18px;
+    }
+
+</style>
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+   <h1 style="margin-bottom: 0px;" class="nhsuk-heading-l">Your study leave dashboard</h1>
+   <p class="nhsuk-hint" style="margin-top: 0px;">Book courses and keep track of your study leave applications and expenses claims</p>
+      
+
+  </div>
+  <div class="nhsuk-grid-column-one-third" style="display: none;">
+    {% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Apply for study leave",
+  href: "apply",
+  classes: "nhsuk-u-float-right"
+
+}) }}
+  </div>
+</div>
+
+
+
+
+
+  <style>
+    :root{
+      --track-bg:#e6e9ee;
+      --fill-bg:#1f77b4;
+      --danger:#d9534f;
+      --radius:8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:#0b1a2b;
+    }
+    .card{max-width:520px;margin-bottom:28px;padding:18px;background:#fff}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .label{font-size:14px;color:#22303f}
+    .values{font-weight:600;font-size:18px}
+
+    .progress-wrap{margin-top:14px}
+    .progress-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#54657a;margin-bottom:8px}
+
+    .progress-track{width:100%;height:18px;background:var(--track-bg);border-radius:var(--radius);overflow:hidden;position:relative}
+    .progress-fill{height:100%;width:0%;background:var(--fill-bg);border-radius:var(--radius);transition:width 800ms cubic-bezier(.2,.9,.3,1)}
+    .progress-fill.over{background:var(--danger)}
+
+    .percent-badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;background:#f1f6fb;color:#0b3a66;margin-left:8px}
+
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @media (max-width:420px){.values{font-size:16px}}
+  </style>
+
+
+
+
+    
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <span>Budget period: <b>01 April 2025 </b>to <b>31 March 2026</b></span> <a href="#">Change</a> <p></p>
+   
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-half">
+          <div class="card" id="budgetCard">
+    <div class="row">
+      <div>
+        <div class="label">Study leave allocation</div>
+        <div class="values"><span id="approvedAmt">13</span> of <span id="totalBudget">30</span> days used</div>
+      </div>
+      <div aria-hidden="true"><span class="percent-badge" id="percentLabel">0%</span></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <div id="remainingText"></div>
+        <div id="avgText"></div>
+      </div>
+
+      <!-- Accessible progressbar -->
+      <div class="progress-track" role="progressbar" aria-labelledby="progressLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+        <span id="progressLabel" class="sr-only">Budget used</span>
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+      </div>
+
+
+     
+<div class="nhsuk-grid-column-one-half">
+  <div class="row" 
+       style="background-color: #ffffff; padding: 15px 15px 15px 15px; display: flex; flex-direction: column; align-items: flex-start;">
+       <h2 style="font-size: 18px;margin-bottom: 0px;">Apply for study leave</h2>
+       <span style="font-size: 14px;" class="nhsuk-hint">Find courses and events you want to attend. </span>
+  <a style="padding: 5px 16px;
+        font-size: 16px;
+        margin-top: -10px;    margin-bottom: 5px;" href="apply" class="nhsuk-button">Apply for study leave</a>
+
+  </div>
+</div>
+
+
+
+  
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+    
+
+  <script>
+    (function(){
+      // Values you can change dynamically or wire up to real data
+      const approved = Number(document.getElementById('approvedAmt').textContent.replace(/[^0-9.]/g,''));
+      const totalBudget = Number(document.getElementById('totalBudget').textContent.replace(/[^0-9.]/g,''));
+
+      // guard against zero/NaN
+      const safeTotal = Number.isFinite(totalBudget) && totalBudget > 0 ? totalBudget : 1;
+      let pct = Math.round((approved / safeTotal) * 100);
+      if (!Number.isFinite(pct)) pct = 0;
+      const fill = document.getElementById('progressFill');
+      const track = document.getElementById('progressTrack');
+      const pctLabel = document.getElementById('percentLabel');
+      const remainingText = document.getElementById('remainingText');
+      const avgText = document.getElementById('avgText');
+
+      // handle overrun (>100%) with visual clue
+      if (pct > 100) {
+        fill.classList.add('over');
+      }
+
+      // animate width (caps at 100 for visual fill; we still display actual pct badge)
+      const visualPct = Math.min(Math.max(pct, 0), 100);
+      requestAnimationFrame(() => { // give browser a tick before anim
+        fill.style.width = visualPct + '%';
+        track.setAttribute('aria-valuenow', Math.min(Math.max(pct,0),100));
+      });
+
+      // update labels
+      pctLabel.textContent = pct + '%';
+      const remaining = totalBudget - approved;
+      remainingText.textContent = 'Remaining: ' + (remaining >= 0 ? remaining : 0)+'days';
+      const approvals =  Math.max(1, 1); // placeholder: replace with real count if available
+      
+
+      // optional: expose a small function for dynamically updating
+      window.updateBudgetProgress = function(newApproved, newTotal, approvalsCount){
+        const a = Number(newApproved);
+        const t = Number(newTotal);
+        const safeT = Number.isFinite(t) && t>0 ? t : 1;
+        const newPct = Math.round((a/safeT)*100);
+        fill.classList.toggle('over', newPct > 100);
+        fill.style.width = Math.min(Math.max(newPct,0),100) + '%';
+        pctLabel.textContent = newPct + '%';
+        track.setAttribute('aria-valuenow', Math.min(Math.max(newPct,0),100));
+        remainingText.textContent = 'Remaining: ' + Math.max(0, Math.round(t - a));
+        avgText.textContent = 'Avg per approval: £' + (approvalsCount ? Math.round((a/approvalsCount)*100)/100 : '—');
+        document.getElementById('approvedAmt').textContent = a;
+        document.getElementById('totalBudget').textContent = t;
+      };
+
+    })();
+  </script>
+
+
+
+
+
+
+<div class="m-studyleave">
+{% from 'tables/macro.njk' import table %}
+
+<h2 class="nhsuk-heading-m">Your study leave applications</h2>
+
+
+
+
+
+{# Filters row above the table #}
+<div class="nhsuk-grid-row nhsuk-grid-row--aligned">
+  <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row" style="align-items:center; gap: 1.25rem;">
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="search-applications">
+            Search applications 
+          </label>
+          <input
+            class="nhsuk-input"
+            id="search-applications"
+            name="search"
+            type="text"
+            inputmode="search"
+            placeholder="Start typing"
+            aria-describedby="search-hint"
+          />
+       
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half" style="min-width: 0;">
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="status-select">Filter by status</label>
+          <select class="nhsuk-select" id="status-select" name="status" aria-label="Filter by status">
+            <option value="all" selected>All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+
+  <div class="nhsuk-grid-column-one-third" style="display:flex; align-items:center; justify-content:flex-end;">
+<!--Space for show items if required from the team -->
+  </div>
+</div>
+
+
+<div class="nhsuk-tabs" data-module="nhsuk-tabs">
+  <h2 class="nhsuk-tabs__title">
+    Contents
+  </h2>
+  
+  
+
+
+{{ table({
+  responsive: true,
+  panel: true,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Course/event" },
+    { text: "Duration", format: "text" },
+   
+  
+    { text: "Status", format: "text" },
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: 'Clinical ethics & end of life care ' },
+   { html: '2 days', format: "text" },
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--grey">In draft</strong>' },
+       { html: '<a href="summary" class="">View</a>' }
+    ],
+    [
+     { html: 'Cardiac advanced life support (CALS) ' },
+     { html: '2 days', format: "text" },
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="claim-summary" class="">View</a>' }
+      
+    ],
+    [
+    { html: 'Tracheostomy / Bronchoscopy skill course ' },
+    { html: '1 day', format: "text" },
+     
+      { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' },
+      { html: '<a href="rejected" class="">View</a>' }
+    ],
+    [
+  { html: 'Care of the potential organ donor eg National Deceased Donation Course for ICM Trainees ' },
+ { html: '2 days', format: "text" },
+   
+       { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="claim-summary" class="">View</a>' }
+      
+        
+    ],
+    [
+    { html: 'European Paediatric Advanced Life Support Course (EPALS) ' },
+    { html: '2 days', format: "text" },
+ 
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+     { html: '<a href="claim-summary" class="">View</a>' }
+    ],[
+    { html: 'Advanced Life Support (ALS)' },
+    { html: '2 days', format: "text" },
+  
+     { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+    { html: '<a href="claim-summary" class="">View</a>' }
+    ],
+    [
+    { html: 'Exam preparation' },
+    { html: '5 days', format: "text" },
+     
+    { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="claim-summary" class="">View</a>' }
+    ]
+  ]
+}) }}
+    
+<!--  
+  
+  
+  <ul class="nhsuk-tabs__list">
+    <li class="nhsuk-tabs__list-item nhsuk-tabs__list-item--selected">
+      <a class="nhsuk-tabs__tab" href="#past-day">
+       Applications
+      </a>
+    </li>
+    <li class="nhsuk-tabs__list-item">
+      <a class="nhsuk-tabs__tab" href="#past-week">
+       Expense claims
+      </a>
+    </li>
+  
+  </ul>
+  <div class="nhsuk-tabs__panel" id="past-day">
+
+  
+<!--  
+
+{{ table({
+  responsive: true,
+  panel: false,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Course/event" },
+    { text: "Duration", format: "text" },
+   
+    { text: "Expense", format: "numeric" },
+    { text: "Status", format: "text" },
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+    [
+      { html: 'Clinical ethics & end of life care ' },
+   { html: '2 days', format: "text" },
+      { text: "£250", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--grey">In draft</strong>' },
+       { html: '<a href="summary" class="">View</a>' }
+    ],
+    [
+     { html: 'Cardiac advanced life support (CALS) ' },
+     { html: '2 days', format: "text" },
+      { text: "£315", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="claim-summary" class="">View</a>' }
+      
+    ],
+    [
+    { html: 'Tracheostomy / Bronchoscopy skill course ' },
+    { html: '1 day', format: "text" },
+      { text: "£300", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--red">Rejected</strong>' },
+      { html: '<a href="rejected" class="">View</a>' }
+    ],
+    [
+  { html: 'Care of the potential organ donor eg National Deceased Donation Course for ICM Trainees ' },
+ { html: '2 days', format: "text" },
+      { text: "£0", format: "numeric" },
+       { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+        { html: '<a href="claim-summary" class="">View</a>' }
+      
+        
+    ],
+    [
+    { html: 'European Paediatric Advanced Life Support Course (EPALS) ' },
+    { html: '2 days', format: "text" },
+      { text: "£595", format: "numeric" },
+      { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+     { html: '<a href="claim-summary" class="">View</a>' }
+    ],[
+    { html: 'Advanced Life Support (ALS)' },
+    { html: '2 days', format: "text" },
+      { text: "£0", format: "numeric" },
+     { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+    { html: '<a href="claim-summary" class="">View</a>' }
+    ],
+    [
+    { html: 'Exam preparation' },
+    { html: '5 days', format: "text" },
+      { text: "£0", format: "numeric" },
+    { html: '<strong class="nhsuk-tag nhsuk-tag--green">Approved</strong>' },
+      { html: '<a href="claim-summary" class="">View</a>' }
+    ]
+  ]
+}) }}
+
+  </div>
+  <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="past-week">
+    
+
+    
+
+{{ table({
+  responsive: true,
+  panel: false,
+  firstCellIsHeader: false,
+  head: [
+    { text: "Course/event" },
+ 
+   
+    { text: "Expense", format: "numeric" },
+   
+    { text: "Action", format: "text" }
+   
+  ],
+  rows: [
+    
+    [
+     { html: 'Cardiac advanced life support (CALS) ' },
+    
+      { text: "£315", format: "numeric" },
+     
+      { html: '<a href="claim-summary" class="">Claim expenses</a><br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color"><b>12</b> days left to claim</span>', format: "text" }
+      
+    ],
+   
+    [
+  { html: 'Care of the potential organ donor eg National Deceased Donation Course for ICM Trainees ' },
+
+      { text: "£0", format: "numeric" },
+      
+       { html: '<a href="claim-summary" class="">Claim expenses</a><br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color"><b>12</b> days left to claim</span>', format: "text" }
+      
+        
+    ],
+   
+    [
+    { html: 'European Paediatric Advanced Life Support Course (EPALS) ' },
+      { text: "£595", format: "numeric" },
+      
+       { html: '<a href="claim-summary" class="">Claim expenses</a><br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color"><b>12</b> days left to claim</span>', format: "text" }
+      
+        
+    ],
+   
+    [
+   { html: 'Advanced Life Support (ALS)' },
+
+      { text: "£0", format: "numeric" },
+   
+       { html: '<a href="claim-summary" class="">Claim expenses</a><br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color"><b>12</b> days left to claim</span>', format: "text" }
+      
+        
+    ],
+   
+    [
+ { html: 'Exam preparation' },
+
+      { text: "£0", format: "numeric" },
+       
+       { html: '<a href="claim-summary" class="">Claim expenses</a><br><span style="font-size: 14px;width: 150px;" class="nhsuk-body-s nhsuk-u-secondary-text-color"><b>12</b> days left to claim</span>', format: "text" }
+      
+        
+    ]
+  ]
+}) }}
+</div>
+
+-->
+
+
+
+
+
+ {% endblock %}

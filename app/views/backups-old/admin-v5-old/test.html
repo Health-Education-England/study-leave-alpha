@@ -1,0 +1,286 @@
+{% extends "layout.html" %}
+
+{% from 'button/macro.njk' import button %}
+{% from 'task-list/macro.njk' import taskList %}
+{% from 'back-link/macro.njk' import backLink %}
+
+{% block pageTitle %}
+  Future Study leave service - NHS England
+{% endblock %}
+
+{% block content %}
+<style>
+  select {border-radius: 0 !important;}
+
+  .sl-back .nhsuk-back-link {
+    padding-top: 0;
+    margin-bottom: 20px;
+    margin-top: 0 !important;
+  }
+
+  .apply-sl .nhsuk-select {
+    min-width: 350px !important;
+    max-width: 350px !important;
+  }
+
+  th, td {
+    font-size: 17px !important;
+  }
+
+  .nhsuk-table__row:hover {
+    background-color: #ffffff !important;
+  }
+
+  svg {
+    border-radius: 4px;
+  }
+</style>
+
+<div class="sl-back">
+  {{ backLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+</div>
+
+<!-- Page heading -->
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h1 class="nhsuk-heading-xl">
+      Study leave reporting
+    </h1>
+    <p class="nhsuk-body-l">
+      View and analyse study leave applications across organisations and time periods.
+    </p>
+  </div>
+</div>
+
+<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+<!-- KPI cards -->
+<div class="nhsuk-grid-row">
+
+  <div class="nhsuk-grid-column-one-quarter">
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h2 class="nhsuk-heading-m">Applications</h2>
+        <p class="nhsuk-heading-xl">1,248</p>
+        <p class="nhsuk-hint">Total submitted</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nhsuk-grid-column-one-quarter">
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h2 class="nhsuk-heading-m">Approved</h2>
+        <p class="nhsuk-heading-xl">932</p>
+        <p class="nhsuk-hint">74.6%</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nhsuk-grid-column-one-quarter">
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h2 class="nhsuk-heading-m">Rejected</h2>
+        <p class="nhsuk-heading-xl">198</p>
+        <p class="nhsuk-hint">15.9%</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nhsuk-grid-column-one-quarter">
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h2 class="nhsuk-heading-m">Pending</h2>
+        <p class="nhsuk-heading-xl">118</p>
+        <p class="nhsuk-hint">Awaiting decision</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+<!-- Graphs -->
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h2 class="nhsuk-heading-l">Trends and insights</h2>
+  </div>
+</div>
+
+<div class="nhsuk-grid-row">
+
+  <!-- Line chart -->
+  <div class="nhsuk-grid-column-one-half">
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h3 class="nhsuk-heading-m">Applications over time</h3>
+        <p class="nhsuk-hint">Monthly submitted applications</p>
+
+        <svg viewBox="0 0 400 200" role="img" aria-labelledby="lineChartTitle"
+             style="width:100%; background:#f0f4f5;">
+          <title id="lineChartTitle">Applications over time</title>
+          <line x1="40" y1="20" x2="40" y2="180" stroke="#768692"/>
+          <line x1="40" y1="180" x2="380" y2="180" stroke="#768692"/>
+          <polyline points="40,140 90,130 140,110 190,120 240,90 290,80 340,70"
+                    fill="none" stroke="#005eb8" stroke-width="3"/>
+          <circle cx="40" cy="140" r="4" fill="#005eb8"/>
+          <circle cx="90" cy="130" r="4" fill="#005eb8"/>
+          <circle cx="140" cy="110" r="4" fill="#005eb8"/>
+          <circle cx="190" cy="120" r="4" fill="#005eb8"/>
+          <circle cx="240" cy="90" r="4" fill="#005eb8"/>
+          <circle cx="290" cy="80" r="4" fill="#005eb8"/>
+          <circle cx="340" cy="70" r="4" fill="#005eb8"/>
+        </svg>
+
+        <p class="nhsuk-body-s">
+          Submissions increased steadily through the year, peaking in June.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie chart -->
+  <div class="nhsuk-grid-column-one-half">
+    <div class="nhsuk-card">
+      <div class="nhsuk-card__content">
+        <h3 class="nhsuk-heading-m">Application status split</h3>
+        <p class="nhsuk-hint">Overall approval outcomes</p>
+
+        <svg viewBox="0 0 200 200" role="img" aria-labelledby="pieChartTitle"
+             style="width:100%; max-width:300px; background:#f0f4f5;">
+          <title id="pieChartTitle">Application status split</title>
+
+          <circle r="80" cx="100" cy="100"
+                  fill="transparent"
+                  stroke="#005eb8"
+                  stroke-width="160"
+                  stroke-dasharray="251 251"
+                  stroke-dashoffset="0"/>
+
+          <circle r="80" cx="100" cy="100"
+                  fill="transparent"
+                  stroke="#d5281b"
+                  stroke-width="160"
+                  stroke-dasharray="70 251"
+                  stroke-dashoffset="-251"/>
+
+          <circle r="80" cx="100" cy="100"
+                  fill="transparent"
+                  stroke="#ffeb3b"
+                  stroke-width="160"
+                  stroke-dasharray="40 251"
+                  stroke-dashoffset="-321"/>
+        </svg>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li><strong>Approved:</strong> 74.6%</li>
+          <li><strong>Rejected:</strong> 15.9%</li>
+          <li><strong>Pending:</strong> 9.5%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+<!-- Filters -->
+<div class="nhsuk-grid-row apply-sl">
+  <div class="nhsuk-grid-column-full">
+    <h2 class="nhsuk-heading-l">Filter results</h2>
+
+    <form>
+      <div class="nhsuk-grid-row">
+
+        <div class="nhsuk-grid-column-one-third">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="date-range">Date range</label>
+            <select class="nhsuk-select" id="date-range">
+              <option>All time</option>
+              <option>Last 30 days</option>
+              <option>Last 3 months</option>
+              <option>Current financial year</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="nhsuk-grid-column-one-third">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="organisation">Organisation</label>
+            <select class="nhsuk-select" id="organisation">
+              <option>All organisations</option>
+              <option>Trust A</option>
+              <option>Trust B</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="nhsuk-grid-column-one-third">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="status">Status</label>
+            <select class="nhsuk-select" id="status">
+              <option>All statuses</option>
+              <option>Approved</option>
+              <option>Rejected</option>
+              <option>Pending</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      {{ button({ text: "Apply filters" }) }}
+    </form>
+  </div>
+</div>
+
+<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+<!-- Table -->
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h2 class="nhsuk-heading-l">Application breakdown</h2>
+
+    <table class="nhsuk-table">
+      <thead class="nhsuk-table__head">
+        <tr class="nhsuk-table__row">
+          <th scope="col">Organisation</th>
+          <th scope="col">Role</th>
+          <th scope="col">Applications</th>
+          <th scope="col">Approved</th>
+          <th scope="col">Rejected</th>
+          <th scope="col">Pending</th>
+        </tr>
+      </thead>
+      <tbody class="nhsuk-table__body">
+        <tr>
+          <td>Trust A</td>
+          <td>Junior Doctor</td>
+          <td>320</td>
+          <td>240</td>
+          <td>52</td>
+          <td>28</td>
+        </tr>
+        <tr>
+          <td>Trust B</td>
+          <td>Consultant</td>
+          <td>180</td>
+          <td>146</td>
+          <td>18</td>
+          <td>16</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="nhsuk-body">
+      <a href="#">Download report as CSV</a>
+    </p>
+  </div>
+</div>
+
+{% endblock %}
